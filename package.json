@@ -1,0 +1,38 @@
+{
+  "name": "drunken_maze",
+  "version": "1.0.0",
+  "description": "DrunkenMaze is a single player game where the user is tasked with navigating the character out of the maze. The main obstacles are that the character has limited visibility and a health bar that is gradually decreasing. The user can pick up items along the way to replenish health, but if the health bar reaches 0 before they can make it out of the maze and into the taxi to get home, you lose!",
+  "main": "index.js",
+  "browserslist": [
+    "defaults"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnnyhoang510/drunken_maze.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnnyhoang510/drunken_maze/issues"
+  },
+  "homepage": "https://github.com/johnnyhoang510/drunken_maze#readme",
+  "dependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "core-js": "^3.21.1",
+    "css-loader": "^6.6.0",
+    "mini-css-extract-plugin": "^2.5.3",
+    "regenerator-runtime": "^0.13.9",
+    "sass": "^1.49.9",
+    "sass-loader": "^12.6.0",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
+  }
+}
