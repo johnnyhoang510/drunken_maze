@@ -9,6 +9,12 @@ In this game, users will be able to:
 * Pick up items by using the spacebar
 * Adjust, mute, and unmute the volume
 
-##Wireframes
+## Wireframes
 
 ![js_wireframe](https://user-images.githubusercontent.com/94396944/155635987-2e58469d-d682-408b-8d65-2760d543492d.png)
+
+## Technologies, Libraries, APIs
+* JavaScript
+* HTML
+* CSS
+* Canvas API
