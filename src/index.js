@@ -15,13 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // drawBase();
     drawWall();
     drawCharacter();
-    
+    drawItem();
 
     // drawing background
     // function drawBase() {
     //     let base_image = new Image();
-    //     base_image.src = 'src/images/BGvector02.png';
-    //     ctx.drawImage(base_image, 0, 0);
+    //     base_image.src = 'src/images/background.png';
     //     base_image.onload = function () {
     //         ctx.drawImage(base_image, 0, 0);
     //     }
@@ -32,8 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let mainChar = new Image();
         // mainChar.src = 'src/images/char_sprites.png';  --> need to resize?
         mainChar.src = 'src/images/character.png';
-        ctx.drawImage(mainChar, 200, 200);
         mainChar.onload = function () {
+            // (image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)  source height,width 
+            // use last 4 to display whole img
             ctx.drawImage(mainChar, 200, 200);
         }
     }
@@ -42,9 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function drawWall() {
         let wallImg = new Image();
         wallImg.src = 'src/images/wall.png';
-        ctx.drawImage(wallImg, 100, 100);
         wallImg.onload = function () {
-            ctx.drawImage(wallImg, 100, 100);
+            ctx.drawImage(wallImg, 100, 100, 50, 50);
+        }
+    }
+
+    function drawItem() {
+        let itemImg = new Image();
+        itemImg.src = 'src/images/flasks_3_2.png';  // need a bigger item
+        itemImg.onload = function() {
+            ctx.drawImage(itemImg, 250, 250);
         }
     }
 })
