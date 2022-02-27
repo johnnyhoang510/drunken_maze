@@ -1,66 +1,3 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//     const canvas = document.getElementById('canvas1');
-//     const ctx = canvas.getContext('2d');
-//     console.log(ctx);
-//     canvas1.width = 1300;
-//     canvas1.height = 700;
-
-
-// function drawWall() {
-//     let wallImg = new Image();
-//     wallImg.src = 'src/images/wall.png';
-//     wallImg.onload = function () {
-//         ctx.drawImage(wallImg, 100, 100, 50, 50);
-//     }
-// }
-
-// console.log(drawWall());
-
-    
-//     // drawBase();
-//     drawWall();
-//     drawCharacter();
-//     drawItem();
-
-//     // drawing background
-//     // function drawBase() {
-//     //     let base_image = new Image();
-//     //     base_image.src = 'src/images/background.png';
-//     //     base_image.onload = function () {
-//     //         ctx.drawImage(base_image, 0, 0);
-//     //     }
-//     // }
-
-
-//     function drawCharacter() {
-//         let mainChar = new Image();
-//         // mainChar.src = 'src/images/char_sprites.png';  --> need to resize?
-//         mainChar.src = 'src/images/character.png';
-//         mainChar.onload = function () {
-//             // (image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)  source height,width 
-//             // use last 4 to display whole img
-//             ctx.drawImage(mainChar, 200, 200);
-//         }
-//     }
-
-//     // drawing wall
-//     function drawWall() {
-//         let wallImg = new Image();
-//         wallImg.src = 'src/images/wall.png';
-//         wallImg.onload = function () {
-//             ctx.drawImage(wallImg, 100, 100, 50, 50);
-//         }
-//     }
-
-//     function drawItem() {
-//         let itemImg = new Image();
-//         itemImg.src = 'src/images/flasks_3_2.png';  // need a bigger item
-//         itemImg.onload = function() {
-//             ctx.drawImage(itemImg, 250, 250);
-//         }
-//     }
-    
-// })
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('canvas1');
@@ -69,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = 1400;
     canvas.height = 700;
 
-  
 
     class Player {
         constructor() {
@@ -106,22 +42,96 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             this.width = 48;
             this.height = 48;
+            this.objects = [];
         }
 
         draw() {
-            let wallImg = new Image();
-            wallImg.src = 'src/images/spikes.png';
+            let spikesUp = new Image();
+            spikesUp.src = 'src/images/spikes.png';
 
-            //top wall
-            for (let x = 0; x <= 1152; x += 48) {
-                ctx.drawImage(wallImg, x, 0, 48, 48);
+            let spikesLeft = new Image();
+            spikesLeft.src = 'src/images/spikesleft.png';
+
+            let spikesDown = new Image();
+            spikesDown.src = 'src/images/spikesdown.png';
+
+            let spikesRight = new Image();
+            spikesRight.src = 'src/images/spikesright.png';
+
+            let brickWall = new Image();
+            brickWall.src = 'src/images/wall.png';
+
+            let bottomWall = new Image();
+            bottomWall.src = 'src/images/walldown.png';
+
+            let rightWall = new Image();
+            rightWall.src = 'src/images/yellowright.png';
+
+            let leftWall = new Image();
+            leftWall.src = 'src/images/yellowleft.png';
+
+            //top spikes
+            for (let x = 32; x <= 1104; x += 48) {
+                ctx.drawImage(spikesDown, x, 32);
             }
+            ctx.drawImage(spikesDown, 1135, 32, 33, 48);
 
-             // top wall
-            for (let x = 0; x <= 144; x += 48) {
-                ctx.drawImage(wallImg, x, 150, 48, 48);
+             // inner start wall
+            for (let x = 32; x <= 144; x += 48) {
+                ctx.drawImage(spikesUp, x, 150);
             }
             
+            for (let y = 183; y <= 321; y += 46) {
+                ctx.drawImage(spikesRight, 177, y);
+            }
+
+
+
+            for (let x = 200; x <= 450; x += 46) {
+                ctx.drawImage(spikesUp, x, 500);
+            }
+
+            for (let y = 623; y >= 150; y -= 46) {
+                ctx.drawImage(spikesLeft, 445, y);
+            }
+
+            for (let y = 100; y <= 300; y += 46) {
+                ctx.drawImage(spikesLeft, 1000, y);
+            }
+
+
+            for (let x = 800; x <= 1122; x += 46) {
+                ctx.drawImage(spikesUp, x, 300);
+                
+            }
+            
+
+            // -------------- BRICK WALLS -----------------
+
+            // top brick wall
+            for (let x = 32; x <= 1000; x += 256) {
+                ctx.drawImage(brickWall, x, 0)
+            }
+            ctx.drawImage(brickWall, 1024, 0, 144, 32);
+
+            //bottom brick wall
+            for (let x = 32; x <= 1000; x+= 256) {
+            ctx.drawImage(bottomWall, x, 670);
+            }
+            ctx.drawImage(bottomWall, 1024, 670, 144, 32);
+
+            // right brick wall
+            ctx.drawImage(rightWall, 1168, 0)
+            ctx.drawImage(rightWall, 1168, 124)
+            ctx.drawImage(rightWall, 1168, 500, 32, 200)
+
+
+            // left brick wall
+            ctx.drawImage(leftWall, 0, 0, 32, 45)
+            ctx.drawImage(leftWall, 0, 185)
+            ctx.drawImage(leftWall, 0, 442)
+
+
         }
     }
 
@@ -164,9 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     function animate() {
         requestAnimationFrame(animate) // argument is func we want to loop
-
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
 
         checkCollision(player, wall); //helper func to check collision. returns true and sets velo to 0
         
@@ -178,15 +186,12 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.fillStyle = "rgb(45, 45, 45)";
         ctx.fill();
         
-        
         //drawing player
         player.update();
         wall.draw();
 
-
-
         
-        // reset velocity if keys are lifted
+        // reset velocity x if keys are lifted
         if (keys.right.pressed) {
             player.velocity.x = -1;
         } else if (keys.left.pressed) {
@@ -195,6 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
             player.velocity.x = 0;
         }
 
+        // reset velocity y if keys are lifted
         if (keys.up.pressed) {
             player.velocity.y = 1;
         } else if (keys.down.pressed) {
@@ -205,10 +211,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    
     animate();
 
 
+    // event listeners
     addEventListener('keydown', ({ keyCode }) => {   //when a key is pressed
         // console.log(event); // keycodes: left37, down40, right39, up38
 
