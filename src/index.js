@@ -101,11 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
     class Wall {
         constructor() {
             this.position = {
-                x: 200,
-                y: 100
+                x: 150,
+                y: 150
             }
-            this.width = 200;
-            this.height = 10;
+            this.width = 48;
+            this.height = 48;
         }
 
         draw() {
@@ -156,21 +156,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // if (
-        //     player.position.x + player.width >= wall.position.x &&
-        //     player.position.x <= (wall.position.x + wall.width) &&
-        //     (player.position.y + player.height) >= wall.position.y &&
-        //     player.position.y <= (wall.position.y + wall.height)
-        // ) {
-        //     console.log("colliding")
-        //     // return true   //first two checks x axis, other two checks y axis
-        // }
-
         if (
-            player.position.x + player.width >= wall.position.x) {
+            player.position.x + player.width >= wall.position.x &&
+            player.position.x <= (wall.position.x + wall.width) &&
+            (player.position.y + player.height) >= wall.position.y &&
+            player.position.y <= (wall.position.y + wall.height)
+        ) {
             console.log("colliding")
             // return true   //first two checks x axis, other two checks y axis
         }
+
+        // if (
+        //     player.position.x + player.width >= wall.position.x) {
+        //     // console.log(player.position.x);
+        //     // console.log(player.width);
+        //     // console.log(wall.position.x)
+        //     console.log("colliding")
+        // }
 
         
         //drawing background
