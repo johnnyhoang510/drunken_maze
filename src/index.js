@@ -70,6 +70,15 @@ document.addEventListener("DOMContentLoaded", () => {
             let leftWall = new Image();
             leftWall.src = 'src/images/yellowleft.png';
 
+            let carImg = new Image();
+            carImg.src = 'src/images/car.png';
+
+            let waterImg = new Image();
+            waterImg.src = 'src/images/water.png';
+
+            let beerImg = new Image();
+            beerImg.src = 'src/images/beer.png';
+
             //top spikes
             for (let x = 32; x <= 1104; x += 48) {
                 ctx.drawImage(spikesDown, x, 32);
@@ -86,25 +95,57 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-
+            // bottom left x
             for (let x = 200; x <= 450; x += 46) {
                 ctx.drawImage(spikesUp, x, 500);
             }
 
+
+            // middle left y
             for (let y = 623; y >= 150; y -= 46) {
                 ctx.drawImage(spikesLeft, 445, y);
             }
 
+            // far right y
             for (let y = 100; y <= 300; y += 46) {
                 ctx.drawImage(spikesLeft, 1000, y);
             }
 
-
+            //far right x
             for (let x = 800; x <= 1122; x += 46) {
-                ctx.drawImage(spikesUp, x, 300);
-                
+                ctx.drawImage(spikesUp, x, 300); 
             }
+
+
+            // middle right y
+            for (let y = 100; y <= 400; y += 46) {
+                ctx.drawImage(spikesLeft, 752, y);
+            }
+
             
+            // far right bottom x
+            for (let x = 785; x <= 1070; x += 46) {
+                ctx.drawImage(spikesDown, x, 570);
+            }
+
+
+            // y wall near end
+            for (let y = 350; y <= 530; y += 46) {
+                ctx.drawImage(spikesLeft, 1060, y);
+            }
+            ctx.drawImage(spikesLeft, 1060, 534, 48, 34);
+
+
+            // middle y
+            for (let y = 623; y >= 150; y -= 46) {
+                ctx.drawImage(spikesRight, 640, y);
+            }
+
+
+            for (let x = 785; x <= 1030; x += 46) {
+                ctx.drawImage(spikesUp, x, 450);
+            }
+            ctx.drawImage(spikesUp, 1062, 450, 30, 48);
 
             // -------------- BRICK WALLS -----------------
 
@@ -121,17 +162,24 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.drawImage(bottomWall, 1024, 670, 144, 32);
 
             // right brick wall
-            ctx.drawImage(rightWall, 1168, 0)
-            ctx.drawImage(rightWall, 1168, 124)
-            ctx.drawImage(rightWall, 1168, 500, 32, 200)
+            ctx.drawImage(rightWall, 1168, 0);
+            ctx.drawImage(rightWall, 1168, 124);
+            ctx.drawImage(rightWall, 1168, 500, 32, 200);
 
 
             // left brick wall
-            ctx.drawImage(leftWall, 0, 0, 32, 45)
-            ctx.drawImage(leftWall, 0, 185)
-            ctx.drawImage(leftWall, 0, 442)
+            ctx.drawImage(leftWall, 0, 0, 32, 45);
+            ctx.drawImage(leftWall, 0, 185);
+            ctx.drawImage(leftWall, 0, 442);
 
+            //car
+            ctx.drawImage(carImg, 1164, 410, 35, 65);
 
+            //water image, test
+            ctx.drawImage(waterImg, 440, 555, 20, 35);
+
+            //beer image, test
+            ctx.drawImage(beerImg, 440, 610, 20, 35);
         }
     }
 
@@ -149,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
             obj1.position.y <= (obj2.position.y + obj2.height)
             ) {
             console.log("colliding")
-            // obj1.velocity.x = 0;   // this will stop player from moving. need to refactor
+            // obj1.velocity.x = 0;   // this will stop player from moving. need to adjust to freeze keys
             // obj1.velocity.y = 0;
             return true   
         }
@@ -193,18 +241,18 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // reset velocity x if keys are lifted
         if (keys.right.pressed) {
-            player.velocity.x = -1;
+            player.velocity.x = -1.4;
         } else if (keys.left.pressed) {
-            player.velocity.x = 1;
+            player.velocity.x = 1.4;
         } else {
             player.velocity.x = 0;
         }
 
         // reset velocity y if keys are lifted
         if (keys.up.pressed) {
-            player.velocity.y = 1;
+            player.velocity.y = 1.4;
         } else if (keys.down.pressed) {
-            player.velocity.y = -1;
+            player.velocity.y = -1.4;
         } else {
             player.velocity.y = 0;
         }
@@ -241,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }) 
 
-    addEventListener('keyup', ({ keyCode }) => {   //when a key is pressed
+    addEventListener('keyup', ({ keyCode }) => {   //when a key is lifted
         // console.log(event); // keycodes: left37, down40, right39, up38
 
         switch (keyCode) {
