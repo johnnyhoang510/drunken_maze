@@ -80,10 +80,10 @@ document.addEventListener("DOMContentLoaded", () => {
             beerImg.src = 'src/images/beer.png';
 
             //top spikes
-            for (let x = 32; x <= 1104; x += 48) {
-                ctx.drawImage(spikesDown, x, 32);
-            }
-            ctx.drawImage(spikesDown, 1135, 32, 33, 48);
+            // for (let x = 32; x <= 1104; x += 48) {
+            //     ctx.drawImage(spikesDown, x, 32);
+            // }
+            // ctx.drawImage(spikesDown, 1135, 32, 33, 48);
 
              // inner start wall
             for (let x = 32; x <= 144; x += 48) {
@@ -168,10 +168,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             // left brick wall
-            ctx.drawImage(leftWall, 0, 0, 32, 45);
+            ctx.drawImage(leftWall, 0, 0, 32, 31);
             ctx.drawImage(leftWall, 0, 185);
             ctx.drawImage(leftWall, 0, 442);
 
+
+
+            
             //car
             ctx.drawImage(carImg, 1164, 410, 35, 65);
 
