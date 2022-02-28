@@ -9,7 +9,7 @@ class Maze {
         }
         this.width = 48;
         this.height = 48;
-        this.wallObjects = [];
+        this.objects = []; // create coords as objects? instead of initializing as wall obj
     }
 
     draw() {

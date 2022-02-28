@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             obj1.position.y <= (obj2.position.y + obj2.height)
             ) {
             console.log("colliding")
-            // obj1.velocity.x = 0;   // this will stop player from moving. need to adjust to freeze keys
+            // obj1.velocity.x = 0;   // this will stop player from moving. need to adjust to freeze keys?
             // obj1.velocity.y = 0;
             return true   
         }
@@ -51,14 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-    // ------------pushing each wall as an object into wallObjects arr?
-    // let brickWall = new Image();
-    // brickWall.src = 'src/images/wall.png';
-    // // for (let x = 32; x <= 1000; x += 256) {
-    // //         ctx.drawImage(brickWall, x, 0)
-    // //     }
-    //     ctx.drawImage(brickWall, 1024, 0, 144, 32);
-    //     maze.wallObjects.push(new Wall(brickWall, 1024, 0, 144, 32));
 
     
 
@@ -85,27 +77,27 @@ document.addEventListener("DOMContentLoaded", () => {
         maze.draw(); // why do these 2 need to be in here??
         car.draw();
         
-        // reset velocity x if keys are lifted
-        if (keys.right.pressed) {
-            player.velocity.x = -1.4;
-        } else if (keys.left.pressed) {
-            player.velocity.x = 1.4;
-        } else {
-            player.velocity.x = 0;
-        }
+        // // reset velocity x if keys are lifted
+        // if (keys.right.pressed) {
+        //     player.velocity.x = -1.4;
+        // } else if (keys.left.pressed) {
+        //     player.velocity.x = 1.4;
+        // } else {
+        //     player.velocity.x = 0;
+        // }
 
-        // reset velocity y if keys are lifted
-        if (keys.up.pressed) {
-            player.velocity.y = 1.4;
-        } else if (keys.down.pressed) {
-            player.velocity.y = -1.4;
-        } else {
-            player.velocity.y = 0;
-        }
+        // // reset velocity y if keys are lifted
+        // if (keys.up.pressed) {
+        //     player.velocity.y = 1.4;
+        // } else if (keys.down.pressed) {
+        //     player.velocity.y = -1.4;
+        // } else {
+        //     player.velocity.y = 0;
+        // }
 
     }
 
-    console.log(maze.wallObjects);
+    // console.log(maze.wallObjects);
     animate();
 
     // event listeners
@@ -116,21 +108,25 @@ document.addEventListener("DOMContentLoaded", () => {
             case 37:
                 // console.log('left')
                 keys.left.pressed = true;
+                player.velocity.x = 1.4;
                 break;
 
             case 40:
                 // console.log('down')
                 keys.down.pressed = true;
+                player.velocity.y = -1.4;
                 break
 
             case 39:
                 // console.log('right')
                 keys.right.pressed = true;
+                player.velocity.x = -1.4;
                 break
 
             case 38:
                 // console.log('up')
                 keys.up.pressed = true;
+                player.velocity.y = 1.4;
                 break
         }
     }) 
@@ -142,21 +138,25 @@ document.addEventListener("DOMContentLoaded", () => {
             case 37:
                 // console.log('left');
                 keys.left.pressed = false;
+                player.velocity.x = 0;
                 break;
 
             case 40:
                 // console.log('down');
-                keys.down.pressed = false
+                keys.down.pressed = false;
+                player.velocity.y = 0;
                 break;
 
             case 39:
                 // console.log('right');
                 keys.right.pressed = false
+                player.velocity.x = 0
                 break;
 
             case 38:
                 // console.log('up');
-                keys.up.pressed = false
+                keys.up.pressed = false;
+                player.velocity.y = 0;
                 break;
         }
     })
