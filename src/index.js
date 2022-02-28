@@ -1,6 +1,8 @@
 import Player from "./scripts/player";
 import Maze from "./scripts/maze";
 import Car from "./scripts/car";
+import Wall from "./scripts/wall";
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const maze = new Maze(ctx);
     const car = new Car(ctx, 1164, 392);
 
+    
 
     //helper func for collision. first two checks x axis, other two checks y axis
     function checkCollision(obj1, obj2) {
@@ -47,7 +50,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+
+    // ------------pushing each wall as an object into wallObjects arr?
+    // let brickWall = new Image();
+    // brickWall.src = 'src/images/wall.png';
+    // // for (let x = 32; x <= 1000; x += 256) {
+    // //         ctx.drawImage(brickWall, x, 0)
+    // //     }
+    //     ctx.drawImage(brickWall, 1024, 0, 144, 32);
+    //     maze.wallObjects.push(new Wall(brickWall, 1024, 0, 144, 32));
+
     
+
     // need to maybe separate player from maze
     function animate() {
         requestAnimationFrame(animate) // argument is func we want to loop
@@ -63,9 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.fillStyle = "rgb(45, 45, 45)";
         ctx.fill();
         
-        //drawing player
+
+
+        //updating player movement
         player.update();
-        maze.draw();   
+        
+        maze.draw(); // why do these 2 need to be in here??
         car.draw();
         
         // reset velocity x if keys are lifted
@@ -88,8 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    console.log(maze.wallObjects);
     animate();
-    console.log(car);
 
     // event listeners
     addEventListener('keydown', ({ keyCode }) => {   //when a key is pressed
@@ -144,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-    
+    console.log("YOO");
 
 
 })

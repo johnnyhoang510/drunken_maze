@@ -1,4 +1,4 @@
-
+const Wall = require("./wall");   // why does importing work like this?
 
 class Maze {
     constructor(ctx) {
@@ -9,7 +9,7 @@ class Maze {
         }
         this.width = 48;
         this.height = 48;
-        this.objects = [];
+        this.wallObjects = [];
     }
 
     draw() {
@@ -41,14 +41,6 @@ class Maze {
         let waterImg = new Image();
         waterImg.src = 'src/images/water.png';
 
-        let beerImg = new Image();
-        beerImg.src = 'src/images/beer.png';
-
-        //top spikes
-        // for (let x = 32; x <= 1104; x += 48) {
-        //     ctx.drawImage(spikesDown, x, 32);
-        // }
-        // ctx.drawImage(spikesDown, 1135, 32, 33, 48);
 
         // inner start wall
         for (let x = 32; x <= 144; x += 48) {
@@ -83,7 +75,7 @@ class Maze {
 
 
         // middle right y
-        for (let y = 100; y <= 400; y += 46) {
+        for (let y = 100; y <= 350; y += 46) {
             this.ctx.drawImage(spikesLeft, 752, y);
         }
 
@@ -116,7 +108,10 @@ class Maze {
 
         // top brick wall
         for (let x = 32; x <= 1000; x += 256) {
-            this.ctx.drawImage(brickWall, x, 0)
+            this.ctx.drawImage(brickWall, x, 0);
+            // let wall = new Wall(brickWall, x, 0, 48, 48);
+            // console.log("yo");
+            // this.wallObjects.push(wall);   // ------ something is broken with the animate??
         }
         this.ctx.drawImage(brickWall, 1024, 0, 144, 32);
 
@@ -145,9 +140,12 @@ class Maze {
         //water image, test
         this.ctx.drawImage(waterImg, 440, 555, 20, 33);
 
-        //beer image, test
-        this.ctx.drawImage(beerImg, 440, 615, 20, 32);
     }
+
+
+    // update() {
+    //     this.draw();
+    // }
 }
 
 
