@@ -10,19 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = 700;
 
 
-            
-    //         //car
-    //         ctx.drawImage(carImg, 1164, 410, 35, 65);
-
-    //         //water image, test
-    //         ctx.drawImage(waterImg, 440, 555, 20, 35);
-
-    //         //beer image, test
-    //         ctx.drawImage(beerImg, 440, 610, 20, 35);
-    //     }
-    // }
-
-
+        
     const player = new Player(ctx);
     const maze = new Maze(ctx);
     // maze.draw();
@@ -58,8 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // drawing wall
     
+    // need to maybe separate player from maze
     function animate() {
         requestAnimationFrame(animate) // argument is func we want to loop
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -76,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         //drawing player
         player.update();
-        maze.draw();
+        maze.draw();   
 
         
         // reset velocity x if keys are lifted
