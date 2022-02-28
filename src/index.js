@@ -1,5 +1,6 @@
 import Player from "./scripts/player";
 import Maze from "./scripts/maze";
+import Car from "./scripts/car";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
     const player = new Player(ctx);
     const maze = new Maze(ctx);
-    // maze.draw();
+    const car = new Car(ctx, 1164, 392);
 
 
     //helper func for collision. first two checks x axis, other two checks y axis
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(animate) // argument is func we want to loop
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // checkCollision(player, wall); //helper func to check collision. returns true and sets velo to 0
+        checkCollision(player, car); //helper func to check collision. returns true and sets velo to 0
         
         //drawing background
         ctx.beginPath();
@@ -65,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //drawing player
         player.update();
         maze.draw();   
-
+        car.draw();
         
         // reset velocity x if keys are lifted
         if (keys.right.pressed) {
@@ -88,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     animate();
-
+    console.log(car);
 
     // event listeners
     addEventListener('keydown', ({ keyCode }) => {   //when a key is pressed

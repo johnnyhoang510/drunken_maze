@@ -37,8 +37,6 @@ class Maze {
         let leftWall = new Image();
         leftWall.src = 'src/images/yellowleft.png';
 
-        let carImg = new Image();
-        carImg.src = 'src/images/car.png';
 
         let waterImg = new Image();
         waterImg.src = 'src/images/water.png';
@@ -142,8 +140,7 @@ class Maze {
 
 
 
-        //car
-        this.ctx.drawImage(carImg, 1164, 410, 35, 65);
+        
 
         //water image, test
         this.ctx.drawImage(waterImg, 440, 555, 20, 33);
