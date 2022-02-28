@@ -15,7 +15,6 @@ class Item {
     draw() {
         let waterImg = new Image();
         waterImg.src = 'src/images/water.png';
-        //water image, test   440x, 555y
         this.ctx.drawImage(waterImg, this.position.x, this.position.y, this.width, this.height);
     }
 }

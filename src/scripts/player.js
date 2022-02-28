@@ -4,7 +4,7 @@ class Player {
     constructor(ctx) {
         this.ctx = ctx;
         this.position = {
-            x: 1060,
+            x: 1100,
             y: 400
         }
         this.width = 60;
@@ -13,7 +13,8 @@ class Player {
             x: 0,
             y: 0
         }
-        this.keys = {
+
+        this.keys = {  //default to false bc keys aren't pressed
             right: {
                 pressed: false
             },
@@ -30,15 +31,10 @@ class Player {
 
 
         this.health = 100;
-
-        // ----------  sprite sheet. BUGGY
         this.frameX = 0;
         this.frameY = 0;
         this.spriteHeight = 48.5;
         this.spriteWidth = 32.5;
-        // this.charSprite = new Image();
-        // this.charSprite.src = '/src/images/char_sprites.png';
-        // this.charSprite.onload = () => this.update();
         this.animationCount = 0; // used to reset spritesheet
         this.lastKey = "up"; // default set bc char is looking down. use this to track last key to press changes direction of sprite
     }
@@ -53,7 +49,6 @@ class Player {
 
     update() {
         this.draw();
-        // this.drawPlayer();
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
         this.animateFrame();
@@ -74,8 +69,48 @@ class Player {
                         this.animationCount = 0;
                     }
                 }
-                    
-                
+
+            case ("down"):
+                if (this.keys.down.pressed) {
+                    this.frameY = 3;
+                    if (this.animationCount < 3) {
+                        this.animationCount += 1;
+                    } else if (this.frameX < 3) {
+                        this.frameX += 1;
+                        this.animationCount = 0;
+                    } else {
+                        this.frameX = 0;
+                        this.animationCount = 0;
+                    }
+                }
+            
+            case ("left"):
+                if (this.keys.left.pressed) {
+                    this.frameY = 2;
+                    if (this.animationCount < 3) {
+                        this.animationCount += 1;
+                    } else if (this.frameX < 3) {
+                        this.frameX += 1;
+                        this.animationCount = 0;
+                    } else {
+                        this.frameX = 0;
+                        this.animationCount = 0;
+                    }
+                }
+            
+            case ("right"):
+                if (this.keys.right.pressed) {
+                    this.frameY = 1;
+                    if (this.animationCount < 3) {
+                        this.animationCount += 1;
+                    } else if (this.frameX < 3) {
+                        this.frameX += 1;
+                        this.animationCount = 0;
+                    } else {
+                        this.frameX = 0;
+                        this.animationCount = 0;
+                    }
+                }
         }
     }
 }
