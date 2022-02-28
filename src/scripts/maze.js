@@ -1,4 +1,8 @@
-const Wall = require("./wall");   // why does importing work like this?
+const Wall = require("./wall");   // have to use ES5 here for some reason
+const Item = require("./item");
+const Car = require("./car");
+const Player = require("./player");
+
 
 class Maze {
     constructor(ctx) {
@@ -9,6 +13,9 @@ class Maze {
         }
         this.width = 48;
         this.height = 48;
+        
+        // this.maze = new Maze(ctx);
+        
         this.objects = []; // create coords as objects? instead of initializing as wall obj
     }
 
@@ -38,8 +45,6 @@ class Maze {
         leftWall.src = 'src/images/yellowleft.png';
 
 
-        let waterImg = new Image();
-        waterImg.src = 'src/images/water.png';
 
 
         // inner start wall
@@ -104,6 +109,8 @@ class Maze {
         }
         this.ctx.drawImage(spikesUp, 1062, 450, 30, 48);
 
+
+
         // -------------- BRICK WALLS -----------------
 
         // top brick wall
@@ -133,12 +140,11 @@ class Maze {
         this.ctx.drawImage(leftWall, 0, 442);
 
 
-
-
+        // this.item1.draw();
+        // this.item2.draw();
         
-
-        //water image, test
-        this.ctx.drawImage(waterImg, 440, 555, 20, 33);
+        // this.player.draw();
+        // this.car.draw();
 
     }
 
