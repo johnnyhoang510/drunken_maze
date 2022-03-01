@@ -12,19 +12,29 @@ class Game {
         this.gameOver = false;
         this.player = new Player(this.ctx);
         this.car = new Car(this.ctx, 1164, 392);
+        this.copCar = new Image();
+        this.copCar.src = "./src/images/copcar2.png";
         this.maze = new Maze(this.ctx);
 
-        // constructor(ctx, x, y, width, height, maxHealth, color) {
-        this.healthBar = new HealthBar(this.ctx, 1220, 20, 130, 30, 300, "green");
+        // constructor(ctx, x, y, width, height, health, maxHealth, color) {
+        this.healthBar = new HealthBar(this.ctx, 1220, 50, 130, 30, 10, 10, "green");
         
         this.item1 = new Item(this.ctx, 440, 555);
         this.item2 = new Item(this.ctx, 100, 210);
+        this.item3 = new Item(this.ctx, 1100, 290);
+        this.item4 = new Item(this.ctx, 600, 590);
+        this.item5 = new Item(this.ctx, 1030, 430);
         this.items = [];
         this.items.push(this.item1);
         this.items.push(this.item2);
+        this.items.push(this.item3);
+        this.items.push(this.item4);
+        this.items.push(this.item5);
 
         this.victory = new Image();
         this.victory.src = "src/images/gamewin.png";
+        this.lost = new Image();
+        this.lost.src = "src/images/gamelost.png";
 
         this.playAgain = new Image();
         this.playAgain.src = "src/images/gamewinplayagain.png"
@@ -32,7 +42,6 @@ class Game {
         window.addEventListener("keydown", this.keyDown.bind(this));
         window.addEventListener("keyup", this.keyUp.bind(this));
         window.addEventListener("click", this.playAgainScreen.bind(this));
-
     }
 
 
@@ -101,15 +110,16 @@ class Game {
     playAgainScreen(e){    // not working properly
         // e.preventDefault();
         if (this.gameOver) {
+            this.animate();
             this.gameOver = false
             this.gameRunning = true;
-            this.animate();
         }
     }
 
     
     gameStart() {
         this.gameRunning = true;
+        //this should include health drain. it is currently in game.draw
     }
 
 
@@ -124,21 +134,27 @@ class Game {
 
     showLost() {
         // if health reaches 0
-        if (this.player.health === 0) {
-            this.gameOver = true;
-            this.gameRunning = false;
-        }
+        this.gameOver = true;
+        this.gameRunning = false;
+        this.drawLost();
+        this.drawPlayAgain();
     }
 
     draw() {
         this.item1.draw();
         this.item2.draw();
+        this.item3.draw();
+        this.item4.draw();
+        this.item5.draw();
         this.player.draw();
         this.car.draw();
         this.maze.draw();
         this.healthBar.draw();
-        this.healthBar.updateHealth(-0.05); // this works, but need to adjust
+        // this.healthBar.updateHealth(-1); // this works, but need to adjust and move somewhere else? not decrementing correctly
 
+        //drawing cop cars
+        this.ctx.drawImage(this.copCar, 1200, 500, 45, 70);
+        this.ctx.drawImage(this.copCar, 1200, 300, 45, 70);
     }
 
     checkCollision(obj1, obj2) { // obj1 will be player
@@ -149,8 +165,6 @@ class Game {
             obj1.position.y <= (obj2.position.y + obj2.height - 15)
         ) {
             console.log("colliding");
-            // obj1.velocity.x = 0;   // this will stop player from moving. need to adjust to freeze keys
-            // obj1.velocity.y = 0;
             return true;
         }
     }
@@ -169,8 +183,9 @@ class Game {
         this.ctx.fillStyle = "rgb(45, 45, 45)";
         this.ctx.fill();
         
-        
+        //draws every object
         this.draw();
+
         //updating player movement
         this.player.update();
         
@@ -185,32 +200,38 @@ class Game {
             console.log("You Win!");
             cancelAnimationFrame(animateId);
             this.showWin();
-        } //helper func to check collision.
+        }
         
-        // this.gameStart();
-        // if (this.gameRunning) this.player.health -= 0.1;
-        // console.log(this.player.health);
-
+        if (this.healthBar.health === 0) {
+            this.gameOver = true;
+            console.log("You Lose");
+            cancelAnimationFrame(animateId);
+            this.showLost();
+        }
 
         //check for collision with items
-        if (this.checkCollision(this.player, this.item2)) {
-            // this.ctx.clearRect(1200, 700, 100, 210);
-            this.item2.position.x = 2500;
-            // console.log(this.items);
-        };
+        this.items.forEach(item => {
+            if (this.checkCollision(this.player, item)) {
+                this.healthBar.updateHealth(20);
+                item.position.x = 2500; // moves item off canvas
+            };
+        })
     }
+
 
 
     // ctx.drawImage(image, sourcex, sy, sWidth, sHeight, destinationx, dy, dWidth, dHeight);
-
     drawVictory() {
-        this.ctx.drawImage(this.victory, 400, 100, 400, 100)
+        this.ctx.drawImage(this.victory, 400, 100, 400, 100);
     }
 
     drawPlayAgain() {
-        this.ctx.drawImage(this.playAgain, 400, 250, 400, 100)
+        this.ctx.drawImage(this.playAgain, 400, 250, 400, 100);
     }
 
+    drawLost() {
+        this.ctx.drawImage(this.lost, 400, 100, 400, 100);
+    }
 }
 
 
