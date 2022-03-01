@@ -2,7 +2,7 @@ const Item = require("./item");
 const Car = require("./car");
 const Player = require("./player");
 const Maze = require("./maze");
-
+const HealthBar = require("./healthbar");
 
 
 class Game {
@@ -13,6 +13,9 @@ class Game {
         this.player = new Player(this.ctx);
         this.car = new Car(this.ctx, 1164, 392);
         this.maze = new Maze(this.ctx);
+
+        // constructor(ctx, x, y, width, height, maxHealth, color) {
+        this.healthBar = new HealthBar(this.ctx, 1220, 20, 130, 30, 300, "green");
         
         this.item1 = new Item(this.ctx, 440, 555);
         this.item2 = new Item(this.ctx, 100, 210);
@@ -133,6 +136,9 @@ class Game {
         this.player.draw();
         this.car.draw();
         this.maze.draw();
+        this.healthBar.draw();
+        this.healthBar.updateHealth(-0.05); // this works, but need to adjust
+
     }
 
     checkCollision(obj1, obj2) { // obj1 will be player

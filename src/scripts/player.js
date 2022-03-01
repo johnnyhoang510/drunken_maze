@@ -30,7 +30,7 @@ class Player {
         };
 
 
-        this.health = 100;
+        this.health = 300;
         this.frameX = 0;
         this.frameY = 0;
         this.spriteHeight = 48.5;
