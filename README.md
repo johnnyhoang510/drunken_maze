@@ -6,7 +6,7 @@ DrunkenMaze is a single player game where the user is tasked with navigating the
 
 In this game, users will be able to:
 * Move the character using the arrow keys
-* Pick up items by using the spacebar
+* Pick up items and heal
 * Adjust, mute, and unmute the volume
 
 ## Wireframes
