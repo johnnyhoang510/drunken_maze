@@ -20,10 +20,16 @@ class Game {
         this.items.push(this.item1);
         this.items.push(this.item2);
 
+        this.victory = new Image();
+        this.victory.src = "src/images/gamewin.png";
+
+        this.playAgain = new Image();
+        this.playAgain.src = "src/images/gamewinplayagain.png"
+
         window.addEventListener("keydown", this.keyDown.bind(this));
         window.addEventListener("keyup", this.keyUp.bind(this));
+        window.addEventListener("click", this.playAgainScreen.bind(this));
 
-        console.log(this.items);
     }
 
 
@@ -89,20 +95,31 @@ class Game {
         }
     }
 
+    playAgainScreen(e){    // not working properly
+        // e.preventDefault();
+        if (this.gameOver) {
+            this.gameOver = false
+            this.gameRunning = true;
+            this.animate();
+        }
+    }
+
     
     gameStart() {
         this.gameRunning = true;
     }
 
 
-    gameWon() {
+    showWin() {
         // if the player collides with the car
         this.gameOver = true;
         this.gameRunning = false;
+        this.drawVictory();
+        this.drawPlayAgain();
     }
 
 
-    gameLost() {
+    showLost() {
         // if health reaches 0
         if (this.player.health === 0) {
             this.gameOver = true;
@@ -161,6 +178,7 @@ class Game {
             this.gameOver = true;
             console.log("You Win!");
             cancelAnimationFrame(animateId);
+            this.showWin();
         } //helper func to check collision.
         
         // this.gameStart();
@@ -177,7 +195,15 @@ class Game {
     }
 
 
+    // ctx.drawImage(image, sourcex, sy, sWidth, sHeight, destinationx, dy, dWidth, dHeight);
 
+    drawVictory() {
+        this.ctx.drawImage(this.victory, 400, 100, 400, 100)
+    }
+
+    drawPlayAgain() {
+        this.ctx.drawImage(this.playAgain, 400, 250, 400, 100)
+    }
 
 }
 
