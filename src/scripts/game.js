@@ -43,7 +43,9 @@ class Game {
         this.lost = new Image();
         this.lost.src = "src/images/gamelost.png";
         this.playAgain = new Image();
-        this.playAgain.src = "src/images/gamewinplayagain.png"
+        this.playAgain.src = "src/images/gamewinplayagain.png";
+        this.playAgainBG = new Image();
+        this.playAgainBG.src = "src/images/bg.png";
 
         window.addEventListener("keydown", this.keyDown.bind(this));
         window.addEventListener("keyup", this.keyUp.bind(this));
@@ -114,11 +116,12 @@ class Game {
     }
 
     playAgainScreen(e){    // not working properly
-        // e.preventDefault();
+        e.preventDefault();
         if (this.gameOver) {
-            this.animate();
-            this.gameOver = false
-            this.gameRunning = true;
+            this.gameOver = true;
+            this.gameRunning = false;
+            let newGame = new Game(this.ctx);  // is there a better way?
+            newGame.animate();
         }
     }
 
@@ -133,8 +136,11 @@ class Game {
         // if the player collides with the car
         this.gameOver = true;
         this.gameRunning = false;
+        this.ctx.clearRect(0, 0, 1400, 700);
+        this.drawPlayAgainBG();
         this.drawVictory();
         this.drawPlayAgain();
+        this.drawText();
     }
 
 
@@ -178,7 +184,7 @@ class Game {
 
     animate() {
         let animateId;
-        animateId = requestAnimationFrame(this.animate.bind(this)) // argument is func we want to loop
+        animateId = requestAnimationFrame(this.animate.bind(this)) // save to var so we can cancel later
         this.ctx.clearRect(0, 0, 1400, 700);
 
         
@@ -236,7 +242,22 @@ class Game {
     }
 
     drawLost() {
-        this.ctx.drawImage(this.lost, 400, 100, 400, 100);
+        this.ctx.drawImage(this.lost, 400, 100, 420, 100);
+    }
+
+    drawPlayAgainBG() {
+        this.ctx.drawImage(this.playAgainBG, 0, 0, 1400, 700);
+    }
+
+    drawText() {
+        // more text!
+        this.ctx.font = "48px fantasy";
+        this.ctx.fillStyle = "white";
+        this.ctx.fillText(`You won with ${this.healthBar.health} health remaining!`, 250, 450);
+
+        this.ctx.font = "48px fantasy";
+        this.ctx.fillStyle = "white";
+        this.ctx.fillText("Thank you for getting Bob home safely!", 230, 550);
     }
 }
 

@@ -4,8 +4,8 @@ class Player {
     constructor(ctx) {
         this.ctx = ctx;
         this.position = {
-            x: 100,
-            y: 100
+            x: 1100,
+            y: 400
         }
         this.width = 60;
         this.height = 60;
