@@ -17,7 +17,7 @@ class Game {
         this.maze = new Maze(this.ctx);
 
         // constructor(ctx, x, y, width, height, health, maxHealth, color) {
-        this.healthBar = new HealthBar(this.ctx, 1220, 50, 130, 30, 10, 10, "green");
+        this.healthBar = new HealthBar(this.ctx, 1220, 50, 130, 30, 100, 100, "green");
         
         this.item1 = new Item(this.ctx, 440, 555);
         this.item2 = new Item(this.ctx, 100, 210);

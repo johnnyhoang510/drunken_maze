@@ -1,4 +1,3 @@
-const Wall = require("./wall");   // have to use ES5 here for some reason
 const Item = require("./item");
 const Car = require("./car");
 const Player = require("./player");
