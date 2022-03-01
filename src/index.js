@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const game = new Game(ctx);
     game.animate();
 
-    console.log("YOO");
 
 })
 

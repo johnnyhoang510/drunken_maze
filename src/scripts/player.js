@@ -65,7 +65,7 @@ class Player {
                         this.frameX += 1; //changing the frame
                         this.animationCount = 0; //resets to first sprite in row
                     } else {
-                        this.frameX = 0; // if we go past the sprite sheet, reset back down
+                        this.frameX = 0; // if we go past end of sheet, reset back down
                         this.animationCount = 0;
                     }
                 }

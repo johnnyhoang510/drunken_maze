@@ -31,11 +31,17 @@ class Game {
         this.items.push(this.item4);
         this.items.push(this.item5);
 
+        // audio not working properly
+        // this.music = new Audio();
+        // this.music.src = "src/images/audio.mp3";
+        // this.music.loop = true;
+        // this.music.volume = 1;
+
+
         this.victory = new Image();
         this.victory.src = "src/images/gamewin.png";
         this.lost = new Image();
         this.lost.src = "src/images/gamelost.png";
-
         this.playAgain = new Image();
         this.playAgain.src = "src/images/gamewinplayagain.png"
 
@@ -155,6 +161,7 @@ class Game {
         //drawing cop cars
         this.ctx.drawImage(this.copCar, 1200, 500, 45, 70);
         this.ctx.drawImage(this.copCar, 1200, 300, 45, 70);
+        
     }
 
     checkCollision(obj1, obj2) { // obj1 will be player
@@ -192,7 +199,6 @@ class Game {
         // this.maze.draw();
         // this.car.draw();
         
-
 
         //checking for collision with car. game should end if this is true
         if (this.checkCollision(this.player, this.car)) {
