@@ -1,4 +1,5 @@
 import Game from "./scripts/game";
+import Menu from "./scripts/menu";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,10 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = 700;
 
 
-    const game = new Game(ctx);
-    game.animate();
+    // const game = new Game(ctx);
+    // game.animate();
 
-
+    const menu = new Menu(ctx);
+    menu.animate();
 })
 
 

@@ -39,11 +39,11 @@ class Game {
 
 
         this.victory = new Image();
-        this.victory.src = "src/images/gamewin.png";
+        this.victory.src = "src/images/youwin.png";
         this.lost = new Image();
-        this.lost.src = "src/images/gamelost.png";
+        this.lost.src = "src/images/youlose.png";
         this.playAgain = new Image();
-        this.playAgain.src = "src/images/gamewinplayagain.png";
+        this.playAgain.src = "src/images/playagain.png";
         this.playAgainBG = new Image();
         this.playAgainBG.src = "src/images/bg.png";
 
@@ -140,7 +140,7 @@ class Game {
         this.drawPlayAgainBG();
         this.drawVictory();
         this.drawPlayAgain();
-        this.drawText();
+        this.drawTextWin();
     }
 
 
@@ -148,8 +148,11 @@ class Game {
         // if health reaches 0
         this.gameOver = true;
         this.gameRunning = false;
+        this.ctx.clearRect(0, 0, 1400, 700);
+        this.drawPlayAgainBG();
         this.drawLost();
         this.drawPlayAgain();
+        this.drawTextLost();
     }
 
     draw() {
@@ -167,6 +170,7 @@ class Game {
         //drawing cop cars
         this.ctx.drawImage(this.copCar, 1200, 500, 45, 70);
         this.ctx.drawImage(this.copCar, 1200, 300, 45, 70);
+
         
     }
 
@@ -209,14 +213,12 @@ class Game {
         //checking for collision with car. game should end if this is true
         if (this.checkCollision(this.player, this.car)) {
             this.gameOver = true;
-            console.log("You Win!");
             cancelAnimationFrame(animateId);
             this.showWin();
         }
         
         if (this.healthBar.health === 0) {
             this.gameOver = true;
-            console.log("You Lose");
             cancelAnimationFrame(animateId);
             this.showLost();
         }
@@ -234,30 +236,35 @@ class Game {
 
     // ctx.drawImage(image, sourcex, sy, sWidth, sHeight, destinationx, dy, dWidth, dHeight);
     drawVictory() {
-        this.ctx.drawImage(this.victory, 400, 100, 400, 100);
+        this.ctx.drawImage(this.victory, 490, 100);
     }
 
     drawPlayAgain() {
-        this.ctx.drawImage(this.playAgain, 400, 250, 400, 100);
+        this.ctx.drawImage(this.playAgain, 450, 250, 400, 100);
     }
 
     drawLost() {
-        this.ctx.drawImage(this.lost, 400, 100, 420, 100);
+        this.ctx.drawImage(this.lost, 480, 100);
     }
 
     drawPlayAgainBG() {
         this.ctx.drawImage(this.playAgainBG, 0, 0, 1400, 700);
     }
 
-    drawText() {
-        // more text!
+    drawTextWin() {
         this.ctx.font = "48px fantasy";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`You won with ${this.healthBar.health} health remaining!`, 250, 450);
+        this.ctx.fillText(`You won with ${this.healthBar.health} health remaining!`, 290, 450);
 
         this.ctx.font = "48px fantasy";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText("Thank you for getting Bob home safely!", 230, 550);
+        this.ctx.fillText("Thank you for getting Bob home safely!", 270, 550);
+    }
+
+    drawTextLost() {
+        this.ctx.font = "48px fantasy";
+        this.ctx.fillStyle = "white";
+        this.ctx.fillText("Bob blacked out...", 460, 450);
     }
 }
 
