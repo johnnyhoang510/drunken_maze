@@ -6,8 +6,10 @@ const HealthBar = require("./healthbar");
 
 
 class Game {
-    constructor(ctx) {
+    constructor(ctx, fogctx) {
         this.ctx = ctx;
+        this.fogctx = fogctx;
+        this.lightRadius = 100;
         this.gameRunning = false; // set to false. we want to start at main menu
         this.gameOver = false;
         this.player = new Player(this.ctx);
@@ -32,11 +34,10 @@ class Game {
         this.items.push(this.item5);
 
         // audio not working properly
-        // this.music = new Audio();
-        // this.music.src = "src/images/audio.mp3";
-        // this.music.loop = true;
-        // this.music.volume = 1;
-
+        this.music = new Audio();
+        this.music.src = "src/images/audio.mp3";
+        this.music.loop = true;
+        this.music.volume = 0.5;
 
         this.victory = new Image();
         this.victory.src = "src/images/youwin.png";
@@ -57,28 +58,24 @@ class Game {
         e.preventDefault();
         switch (e.keyCode) {
             case 37:
-                // console.log('left')
                 this.player.keys.left.pressed = true;
                 this.player.velocity.x = 1.4;
                 this.player.lastKey = "left";
                 break;
     
             case 40:
-                // console.log('down')
                 this.player.keys.down.pressed = true;
                 this.player.velocity.y = -1.4;
                 this.player.lastKey = "down";
                 break;
     
             case 39:
-                // console.log('right')
                 this.player.keys.right.pressed = true;
                 this.player.velocity.x = -1.4;
                 this.player.lastKey = "right";
                 break;
     
             case 38:
-                // console.log('up')
                 this.player.keys.up.pressed = true;
                 this.player.velocity.y = 1.4;
                 this.player.lastKey = "up";
@@ -115,12 +112,12 @@ class Game {
         }
     }
 
-    playAgainScreen(e){    // not working properly
+    playAgainScreen(e){  
         e.preventDefault();
         if (this.gameOver) {
             this.gameOver = true;
             this.gameRunning = false;
-            let newGame = new Game(this.ctx);  // is there a better way?
+            let newGame = new Game(this.ctx, this.fogctx);  // is there a better way?
             newGame.animate();
         }
     }
@@ -133,10 +130,10 @@ class Game {
 
 
     showWin() {
-        // if the player collides with the car
         this.gameOver = true;
         this.gameRunning = false;
         this.ctx.clearRect(0, 0, 1400, 700);
+        this.fogctx.clearRect(0, 0, 1400, 700);
         this.drawPlayAgainBG();
         this.drawVictory();
         this.drawPlayAgain();
@@ -145,16 +142,33 @@ class Game {
 
 
     showLost() {
-        // if health reaches 0
         this.gameOver = true;
         this.gameRunning = false;
         this.ctx.clearRect(0, 0, 1400, 700);
+        this.fogctx.clearRect(0, 0, 1400, 700);
         this.drawPlayAgainBG();
         this.drawLost();
         this.drawPlayAgain();
         this.drawTextLost();
     }
 
+
+    // ---------------not working
+    drawFog() {
+        this.fogctx.fillStyle = "black";
+        this.fogctx.fillRect(0, 0, 1200, 700);
+        this.fogctx.globalCompositeOperation = "destination-out";
+        let fogGR = this.fogctx.createRadialGradient(this.player.position.x + 30, this.player.position.y + 30, this.lightRadius, this.player.position.x + 30, this.player.position.y + 30, this.lightRadius / 2 );
+        fogGR.addColorStop(0, "rgba(0, 0, 0, 0)");
+        fogGR.addColorStop(1, "rgba(0, 0, 0, 1)");
+        this.fogctx.fillStyle = fogGR;
+        this.fogctx.beginPath();
+        this.fogctx.arc(this.player.position.x + 30, this.player.position.y + 30, this.lightRadius, 0, 2 * Math.PI); //this is drawing the circle
+        this.fogctx.closePath();
+        this.fogctx.fill();
+        this.fogctx.globalCompositeOperation = "source-over";
+    }
+    
     draw() {
         this.item1.draw();
         this.item2.draw();
@@ -171,8 +185,8 @@ class Game {
         this.ctx.drawImage(this.copCar, 1200, 500, 45, 70);
         this.ctx.drawImage(this.copCar, 1200, 300, 45, 70);
 
-        
     }
+
 
     checkCollision(obj1, obj2) { // obj1 will be player
         if (
@@ -191,7 +205,8 @@ class Game {
         animateId = requestAnimationFrame(this.animate.bind(this)) // save to var so we can cancel later
         this.ctx.clearRect(0, 0, 1400, 700);
 
-        
+        this.drawFog();
+
         //drawing background
         this.ctx.beginPath();
         this.ctx.rect(0, 0, 1200, 700)
@@ -208,6 +223,7 @@ class Game {
         
         // this.maze.draw();
         // this.car.draw();
+
         
 
         //checking for collision with car. game should end if this is true
@@ -227,7 +243,7 @@ class Game {
         this.items.forEach(item => {
             if (this.checkCollision(this.player, item)) {
                 this.healthBar.updateHealth(20);
-                item.position.x = 2500; // moves item off canvas
+                item.position.x = 3000; // moves item off canvas
             };
         })
     }

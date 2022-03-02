@@ -2,8 +2,9 @@ const Game = require("./game");
 
 
 class Menu {
-    constructor(ctx) {
+    constructor(ctx, fogctx) {
         this.ctx = ctx;
+        this.fogctx = fogctx;
         this.mainMenu = new Image();
         this.mainMenu.src = "src/images/bg.png";
         this.mainTitle = new Image();
@@ -14,13 +15,15 @@ class Menu {
         this.clickToStart.src = "src/images/clicktostart.png";
         this.atMainMenu = true;
         
-        this.createGame = new Game(this.ctx);
+        this.createGame = new Game(this.ctx, this.fogctx);
+
         window.addEventListener("click", this.startGame.bind(this));
     }
 
     startGame(e) {
         e.preventDefault();
         this.atMainMenu = false;
+        this.createGame.music.play();
         this.createGame.animate();
     }
 
@@ -36,6 +39,7 @@ class Menu {
         let animateId;
         animateId = requestAnimationFrame(this.animate.bind(this));
         this.ctx.clearRect(0, 0, 1400, 700);
+        this.fogctx.clearRect(0, 0, 1400, 700);
 
         this.draw();
         this.drawText();

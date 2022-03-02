@@ -5,7 +5,7 @@ class Player {
         this.ctx = ctx;
         this.position = {
             x: 1100,
-            y: 400
+            y: 200
         }
         this.width = 60;
         this.height = 60;
