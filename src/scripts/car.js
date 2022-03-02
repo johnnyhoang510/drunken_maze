@@ -5,7 +5,7 @@ class Car {
         this.ctx = ctx;
         this.x = x;
         this.y = y;
-        this.width = 35;
+        this.width = 32;
         this.height = 65;
     }
 

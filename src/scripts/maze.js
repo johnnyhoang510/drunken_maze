@@ -5,12 +5,15 @@ const Car = require("./car");
 class Maze {
     constructor(ctx) {
         this.ctx = ctx;
-        this.car = new Car(this.ctx, 1164, 392);
+        this.car = new Car(this.ctx, 1170, 392);
         this.item1 = new Item(this.ctx, 440, 555);
         this.item2 = new Item(this.ctx, 100, 210);
         this.item3 = new Item(this.ctx, 1100, 290);
         this.item4 = new Item(this.ctx, 600, 590);
         this.item5 = new Item(this.ctx, 1030, 430);
+
+        // this.dummyItem = new Item(this.ctx, 775, 556);
+
         this.items = [];
         this.items.push(this.item1);
         this.items.push(this.item2);
@@ -150,28 +153,33 @@ class Maze {
         this.item5.draw();
         this.car.draw();
 
+        // this.dummyItem.draw();
+
 
         // creating coord objects
         this.horiObjects = [
-            {x: 32, y: 0, width: 1112, height: 32}, // top brick wall
-            {x: 32, y: 180, width: 112, height: 10}, // start spikes
-            {x: 200, y: 540, width: 250, height: 18}, // bottom left x
-            {x: 800, y: 300, width: 322, height: 46}, // far right x
-            {x: 785, y: 570, width: 285, height: 46}, // far right bottom x
-            {x: 32, y: 670, width: 1112, height: 32} // bottom brick wall
+            {x: 0, y: -10, width: 1250, height: 40}, // top brick wall
+            {x: 0, y: 170, width: 180, height: 40}, // start spikes
+            {x: 210, y: 510, width: 250, height: 40}, // bottom left x
+            {x: 204, y: 514, width: 40, height: 40}, // bottom left x cover   NOT WORKING!!
+            {x: 800, y: 315, width: 360, height: 40.1}, // far right x
+            {x: 785, y: 550, width: 320, height: 55}, // far right bottom x
+            {x: 32, y: 660, width: 1112, height: 40}, // bottom brick wall
+
         ]
 
         this.vertObjects = [
-            {x: 167, y: 183, width: 46, height: 143}, //inner y
-            {x: 445, y: 160, width: 46, height: 463}, //middle left y
-            {x: 1000, y: 100, width: 46, height: 200}, //far right y
-            {x: 752, y: 100, width: 46, height: 250}, //middle right y
-            {x: 1060, y: 350, width: 214, height: 46}, //near end y
-            {x: 640, y: 150, width: 46, height: 473}, //middle y
-            {x: 1168, y: 0, width: 32, height: 388}, //right brick wall upper
-            {x: 1168, y: 500, width: 32, height: 200}, //right brick wall lower
-            {x: 0, y: 185, width: 32, height: 512}, //left brick wall lower
-            {x: 0, y: 0, width: 32, height: 31}, //left brick wall upper
+            {x: 175, y: 183, width: 40, height: 173}, //inner y
+            {x: 181, y: 330, width: 10, height: 40}, // inner y cover
+            {x: 475, y: 160, width: 40, height: 463}, //middle left y
+            {x: 1025, y: 100, width: 40, height: 200}, //far right y
+            {x: 775, y: 100, width: 40, height: 250}, //middle right y
+            {x: 1080, y: 350, width: 40, height: 214}, //near end y
+            {x: 630, y: 150, width: 40, height: 490}, //middle y
+            {x: 1178, y: 0, width: 40, height: 388}, //right brick wall upper
+            {x: 1178, y: 500, width: 40, height: 200}, //right brick wall lower
+            {x: -10, y: 180, width: 40, height: 520} //left brick wall lower
+            // {x: 1, y: 1, width: 32, height: 31}, //left brick wall upper
         ]
     
     }

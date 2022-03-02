@@ -163,10 +163,10 @@ class Game {
 
     checkCollision(obj1, obj2) { // obj1 will be player
         if (
-            (obj1.x + obj1.width - 30) >= obj2.x &&
+            (obj1.x + obj1.width) >= obj2.x &&
             obj1.x <= (obj2.x + obj2.width) &&
             (obj1.y + obj1.height) >= obj2.y &&
-            obj1.y <= (obj2.y + obj2.height - 15)
+            obj1.y <= (obj2.y + obj2.height)
         ) {
             // console.log("colliding");
             return true;
@@ -225,12 +225,14 @@ class Game {
             if (this.checkCollision(this.player, wall)) {
                 if (this.player.lastKey === "down") {
                     this.player.y = wall.y + wall.height;
-                    this.player.velocity.y = 0;
-                    console.log("I pressed down");
+                    this.player.keys.down.pressed = false;
+                    this.player.animationCount = 0; // stops frame from switching
+                    this.player.velocity.x = 0;
                 } else if (this.player.lastKey === "up") {
-                    this.player.y = wall.y - wall.height - this.player.height; // if char is coming from top, this will keep them above the obj
-                    this.player.velocity.y = 0;
-                    console.log("I pressed up");
+                    this.player.y = wall.y - wall.height; // if char is coming from top, this will keep them above the obj
+                    this.player.keys.up.pressed = false;
+                    this.player.animationCount = 0;
+                    this.player.velocity.x = 0;
                 }
             }
         })
@@ -239,12 +241,15 @@ class Game {
             if (this.checkCollision(this.player, wall)) {
                 if (this.player.lastKey === "right") {
                     this.player.x = wall.x + wall.width;
+                    this.player.keys.right.pressed = false;
+                    this.player.animationCount = 0;
                     this.player.velocity.x = 0;
-                    console.log("I pressed right");
+
                 } else if (this.player.lastKey === "left") {
-                    this.player.x = wall.x - wall.width + this.player.width; // if coming from left, keeps them on left side
+                    this.player.x = wall.x - wall.width; // if coming from left, keeps them on left side
+                    this.player.keys.left.pressed = false;
+                    this.player.animationCount = 0;
                     this.player.velocity.x = 0;
-                    console.log("I pressed left");
                 }
             }
         })
