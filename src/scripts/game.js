@@ -153,17 +153,17 @@ class Game {
     }
 
 
-    // ---------------not working
+    
     drawFog() {
         this.fogctx.fillStyle = "black";
         this.fogctx.fillRect(0, 0, 1200, 700);
         this.fogctx.globalCompositeOperation = "destination-out";
-        let fogGR = this.fogctx.createRadialGradient(this.player.position.x + 30, this.player.position.y + 30, this.lightRadius, this.player.position.x + 30, this.player.position.y + 30, this.lightRadius / 2 );
-        fogGR.addColorStop(0, "rgba(0, 0, 0, 0)");
-        fogGR.addColorStop(1, "rgba(0, 0, 0, 1)");
-        this.fogctx.fillStyle = fogGR;
+        let fogCircle = this.fogctx.createRadialGradient(this.player.position.x + 20, this.player.position.y + 20, this.lightRadius, this.player.position.x + 20, this.player.position.y + 20, this.lightRadius / 2 );
+        fogCircle.addColorStop(0, "rgba(0, 0, 0, 0)");
+        fogCircle.addColorStop(1, "rgba(0, 0, 0, 1)");
+        this.fogctx.fillStyle = fogCircle;
         this.fogctx.beginPath();
-        this.fogctx.arc(this.player.position.x + 30, this.player.position.y + 30, this.lightRadius, 0, 2 * Math.PI); //this is drawing the circle
+        this.fogctx.arc(this.player.position.x + 20, this.player.position.y + 20, this.lightRadius, 0, 2 * Math.PI); //this is drawing the circle
         this.fogctx.closePath();
         this.fogctx.fill();
         this.fogctx.globalCompositeOperation = "source-over";
@@ -205,7 +205,7 @@ class Game {
         animateId = requestAnimationFrame(this.animate.bind(this)) // save to var so we can cancel later
         this.ctx.clearRect(0, 0, 1400, 700);
 
-        this.drawFog();
+        // this.drawFog();
 
         //drawing background
         this.ctx.beginPath();
@@ -220,9 +220,6 @@ class Game {
 
         //updating player movement
         this.player.update();
-        
-        // this.maze.draw();
-        // this.car.draw();
 
         
 
