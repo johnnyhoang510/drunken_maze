@@ -107,10 +107,10 @@ class Maze {
         }
 
 
-        for (let x = 785; x <= 1030; x += 46) {
-            this.ctx.drawImage(spikesUp, x, 450);
-        }
-        this.ctx.drawImage(spikesUp, 1062, 450, 30, 48);
+        // for (let x = 785; x <= 1030; x += 46) {
+        //     this.ctx.drawImage(spikesUp, x, 450);
+        // }
+        // this.ctx.drawImage(spikesUp, 1062, 450, 30, 48);
 
 
 
@@ -148,6 +148,13 @@ class Maze {
         this.item4.draw();
         this.item5.draw();
         this.car.draw();
+
+
+        // creating coord objects
+        this.objects = [
+            {x: 32, y: 0, w: 1112, h: 32}
+        ]
+    
     }
 
 

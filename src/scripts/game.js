@@ -169,6 +169,7 @@ class Game {
             obj1.position.y <= (obj2.position.y + obj2.height - 15)
         ) {
             console.log("colliding");
+            console.log(this.maze.objects);
             return true;
         }
     }
@@ -217,6 +218,12 @@ class Game {
                 item.position.x = 3000; // moves item off canvas
             };
         })
+
+        // this.maze.objects.forEach(wall => {
+        //     if (this.checkCollision(this.player, wall)) {
+        //         console.log("colliding");
+        //     }
+        // })
     }
 
 

@@ -17,11 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // const game = new Game(ctx, fogctx);
-    // game.animate();
+    const game = new Game(ctx, fogctx);
+    game.animate();
 
-    const menu = new Menu(ctx, fogctx);
-    menu.animate();
+    // const menu = new Menu(ctx, fogctx);
+    // menu.animate();
 
     
 })
