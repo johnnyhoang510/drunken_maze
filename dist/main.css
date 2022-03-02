@@ -8,3 +8,13 @@
 #canvas2 {
   position: absolute;
 }
+
+.github {
+  position: absolute;
+  margin-left: 1220px;
+}
+
+img {
+  width: 30px;
+  height: 30px;
+}

@@ -8,7 +8,7 @@ class HealthBar {
         this.width = width;
         this.height = height;
         this.maxHealth = maxHealth;
-        this.health = maxHealth;
+        this.health = health;
         this.maxWidth = width;
         this.color = color;
         this.healthTag = new Image();
@@ -23,7 +23,7 @@ class HealthBar {
         this.ctx.fillRect(this.x, this.y, this.width, this.height);
         this.ctx.strokeRect(this.x, this.y, this.maxWidth, this.height);
 
-        this.ctx.drawImage(this.healthTag, 1220, 5, 60, 50)
+        this.ctx.drawImage(this.healthTag, 1220, 55, 60, 50)
     }
 
     //not working properly

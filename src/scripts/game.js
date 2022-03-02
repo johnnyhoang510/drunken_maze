@@ -10,16 +10,14 @@ class Game {
         this.ctx = ctx;
         this.fogctx = fogctx;
         this.lightRadius = 100;
-        this.gameRunning = false; // set to false. we want to start at main menu
+        this.gameRunning = false; // set to false. want to start at main menu
         this.gameOver = false;
         this.player = new Player(this.ctx);
         this.car = new Car(this.ctx, 1164, 392);
-        this.copCar = new Image();
-        this.copCar.src = "./src/images/copcar2.png";
         this.maze = new Maze(this.ctx);
 
         // constructor(ctx, x, y, width, height, health, maxHealth, color) {
-        this.healthBar = new HealthBar(this.ctx, 1220, 50, 130, 30, 100, 100, "green");
+        this.healthBar = new HealthBar(this.ctx, 1220, 100, 130, 30, 100, 100, "green");
         
         this.item1 = new Item(this.ctx, 440, 555);
         this.item2 = new Item(this.ctx, 100, 210);
@@ -33,11 +31,14 @@ class Game {
         this.items.push(this.item4);
         this.items.push(this.item5);
 
-        // audio not working properly
         this.music = new Audio();
         this.music.src = "src/images/audio.mp3";
         this.music.loop = true;
-        this.music.volume = 0.5;
+        this.music.volume = 0.1;
+
+        this.burp = new Audio();
+        this.burp.src = "src/images/burp.mp3";
+        this.burp.volume = 0.4;
 
         this.victory = new Image();
         this.victory.src = "src/images/youwin.png";
@@ -87,25 +88,21 @@ class Game {
         e.preventDefault();
         switch (e.keyCode) {
             case 37:
-                // console.log('left');
                 this.player.keys.left.pressed = false;
                 this.player.velocity.x = 0;
                 break;
 
             case 40:
-                // console.log('down');
                 this.player.keys.down.pressed = false;
                 this.player.velocity.y = 0;
                 break;
 
             case 39:
-                // console.log('right');
                 this.player.keys.right.pressed = false
                 this.player.velocity.x = 0
                 break;
 
             case 38:
-                // console.log('up');
                 this.player.keys.up.pressed = false;
                 this.player.velocity.y = 0;
                 break;
@@ -113,7 +110,7 @@ class Game {
     }
 
     playAgainScreen(e){  
-        e.preventDefault();
+        // e.preventDefault();  this doesnt allow github link to be clicked
         if (this.gameOver) {
             this.gameOver = true;
             this.gameRunning = false;
@@ -181,9 +178,7 @@ class Game {
         this.healthBar.draw();
         // this.healthBar.updateHealth(-1); // this works, but need to adjust and move somewhere else? not decrementing correctly
 
-        //drawing cop cars
-        this.ctx.drawImage(this.copCar, 1200, 500, 45, 70);
-        this.ctx.drawImage(this.copCar, 1200, 300, 45, 70);
+        
 
     }
 
@@ -223,13 +218,14 @@ class Game {
 
         
 
-        //checking for collision with car. game should end if this is true
+        //checking for collision with car. game should end if this is true, render win screen
         if (this.checkCollision(this.player, this.car)) {
             this.gameOver = true;
             cancelAnimationFrame(animateId);
             this.showWin();
         }
         
+        //game is lost. render lost screen
         if (this.healthBar.health === 0) {
             this.gameOver = true;
             cancelAnimationFrame(animateId);
@@ -240,6 +236,7 @@ class Game {
         this.items.forEach(item => {
             if (this.checkCollision(this.player, item)) {
                 this.healthBar.updateHealth(20);
+                this.burp.play();
                 item.position.x = 3000; // moves item off canvas
             };
         })

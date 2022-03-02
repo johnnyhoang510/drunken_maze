@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const menu = new Menu(ctx, fogctx);
     menu.animate();
+
+    
 })
 
 
