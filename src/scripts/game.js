@@ -155,6 +155,7 @@ class Game {
         this.fogctx.fillStyle = "black";
         this.fogctx.fillRect(0, 0, 1200, 700);
         this.fogctx.globalCompositeOperation = "destination-out";
+        //this makes the circle follow player
         let fogCircle = this.fogctx.createRadialGradient(this.player.position.x + 20, this.player.position.y + 20, this.lightRadius, this.player.position.x + 20, this.player.position.y + 20, this.lightRadius / 2 );
         fogCircle.addColorStop(0, "rgba(0, 0, 0, 0)");
         fogCircle.addColorStop(1, "rgba(0, 0, 0, 1)");
@@ -176,10 +177,7 @@ class Game {
         this.car.draw();
         this.maze.draw();
         this.healthBar.draw();
-        this.healthBar.updateHealth(-0.5); // this works, but need to adjust and move somewhere else? not decrementing correctly
-
-        
-
+        // this.healthBar.updateHealth(-0.5); // this works, but need to adjust and move somewhere else?
     }
 
 
@@ -217,7 +215,6 @@ class Game {
         this.player.update();
 
         
-
         //checking for collision with car. game should end if this is true, render win screen
         if (this.checkCollision(this.player, this.car)) {
             this.gameOver = true;
