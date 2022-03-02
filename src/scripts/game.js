@@ -168,8 +168,7 @@ class Game {
             (obj1.y + obj1.height) >= obj2.y &&
             obj1.y <= (obj2.y + obj2.height - 15)
         ) {
-            console.log("colliding");
-            console.log(this.maze.objects);
+            // console.log("colliding");
             return true;
         }
     }
@@ -219,9 +218,34 @@ class Game {
             };
         })
 
-        this.maze.objects.forEach(wall => {
+        // player.y = obj2.y + obj2.height   ---> checks for vert
+        // player.x = obj2.x + obj2.width ----> checks for hori
+        // two separate checks: 1 for vert wall, 1 for hori wall
+        this.maze.horiObjects.forEach(wall => {
             if (this.checkCollision(this.player, wall)) {
-                console.log("colliding");
+                if (this.player.lastKey === "down") {
+                    this.player.y = wall.y + wall.height;
+                    this.player.velocity.y = 0;
+                    console.log("I pressed down");
+                } else if (this.player.lastKey === "up") {
+                    this.player.y = wall.y - wall.height - this.player.height; // if char is coming from top, this will keep them above the obj
+                    this.player.velocity.y = 0;
+                    console.log("I pressed up");
+                }
+            }
+        })
+
+        this.maze.vertObjects.forEach(wall => {
+            if (this.checkCollision(this.player, wall)) {
+                if (this.player.lastKey === "right") {
+                    this.player.x = wall.x + wall.width;
+                    this.player.velocity.x = 0;
+                    console.log("I pressed right");
+                } else if (this.player.lastKey === "left") {
+                    this.player.x = wall.x - wall.width + this.player.width; // if coming from left, keeps them on left side
+                    this.player.velocity.x = 0;
+                    console.log("I pressed left");
+                }
             }
         })
     }

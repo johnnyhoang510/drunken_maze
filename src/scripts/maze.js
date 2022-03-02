@@ -17,7 +17,8 @@ class Maze {
         this.items.push(this.item3);
         this.items.push(this.item4);
         this.items.push(this.item5);  
-        this.objects = []; // create coords as objects? instead of initializing as wall obj
+        this.horiObjects = [];
+        this.vertObjects = []; // create coords as objects instead of initializing as wall obj
     }
 
     draw() {
@@ -151,12 +152,27 @@ class Maze {
 
 
         // creating coord objects
-        this.objects = [
-            {x: 32, y: 0, width: 1112, height: 32}
-
+        this.horiObjects = [
+            {x: 32, y: 0, width: 1112, height: 32}, // top brick wall
+            {x: 32, y: 180, width: 112, height: 10}, // start spikes
+            {x: 200, y: 540, width: 250, height: 18}, // bottom left x
+            {x: 800, y: 300, width: 322, height: 46}, // far right x
+            {x: 785, y: 570, width: 285, height: 46}, // far right bottom x
+            {x: 32, y: 670, width: 1112, height: 32} // bottom brick wall
         ]
 
-        // if we hit avobe wall, player y axis
+        this.vertObjects = [
+            {x: 167, y: 183, width: 46, height: 143}, //inner y
+            {x: 445, y: 160, width: 46, height: 463}, //middle left y
+            {x: 1000, y: 100, width: 46, height: 200}, //far right y
+            {x: 752, y: 100, width: 46, height: 250}, //middle right y
+            {x: 1060, y: 350, width: 214, height: 46}, //near end y
+            {x: 640, y: 150, width: 46, height: 473}, //middle y
+            {x: 1168, y: 0, width: 32, height: 388}, //right brick wall upper
+            {x: 1168, y: 500, width: 32, height: 200}, //right brick wall lower
+            {x: 0, y: 185, width: 32, height: 512}, //left brick wall lower
+            {x: 0, y: 0, width: 32, height: 31}, //left brick wall upper
+        ]
     
     }
 

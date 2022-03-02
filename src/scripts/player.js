@@ -5,8 +5,8 @@ class Player {
         this.ctx = ctx;
         this.x = 100;
         this.y = 100;
-        this.width = 60;
-        this.height = 60;
+        this.width = 40;
+        this.height = 40;
         this.velocity = {
             x: 0,
             y: 0
