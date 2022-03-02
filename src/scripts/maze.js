@@ -152,8 +152,11 @@ class Maze {
 
         // creating coord objects
         this.objects = [
-            {x: 32, y: 0, w: 1112, h: 32}
+            {x: 32, y: 0, width: 1112, height: 32}
+
         ]
+
+        // if we hit avobe wall, player y axis
     
     }
 

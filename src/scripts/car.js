@@ -3,10 +3,8 @@
 class Car {
     constructor(ctx, x, y) {
         this.ctx = ctx;
-        this.position = {
-            x: x,
-            y: y
-        }
+        this.x = x;
+        this.y = y;
         this.width = 35;
         this.height = 65;
     }
@@ -14,7 +12,7 @@ class Car {
     draw() {
         let carImg = new Image();
         carImg.src = 'src/images/car.png';
-        this.ctx.drawImage(carImg, this.position.x, this.position.y, this.width, this.height);
+        this.ctx.drawImage(carImg, this.x, this.y, this.width, this.height);
     }
 
 

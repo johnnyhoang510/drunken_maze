@@ -142,12 +142,12 @@ class Game {
         this.fogctx.fillRect(0, 0, 1200, 700);
         this.fogctx.globalCompositeOperation = "destination-out";
         //this makes the circle follow player
-        let fogCircle = this.fogctx.createRadialGradient(this.player.position.x + 20, this.player.position.y + 20, this.lightRadius, this.player.position.x + 20, this.player.position.y + 20, this.lightRadius / 2 );
+        let fogCircle = this.fogctx.createRadialGradient(this.player.x + 20, this.player.y + 20, this.lightRadius, this.player.x + 20, this.player.y + 20, this.lightRadius / 2 );
         fogCircle.addColorStop(0, "rgba(0, 0, 0, 0)");
         fogCircle.addColorStop(1, "rgba(0, 0, 0, 1)");
         this.fogctx.fillStyle = fogCircle;
         this.fogctx.beginPath();
-        this.fogctx.arc(this.player.position.x + 20, this.player.position.y + 20, this.lightRadius, 0, 2 * Math.PI); //this is drawing the circle
+        this.fogctx.arc(this.player.x + 20, this.player.y + 20, this.lightRadius, 0, 2 * Math.PI); //this is drawing the circle
         this.fogctx.closePath();
         this.fogctx.fill();
         this.fogctx.globalCompositeOperation = "source-over";
@@ -163,10 +163,10 @@ class Game {
 
     checkCollision(obj1, obj2) { // obj1 will be player
         if (
-            (obj1.position.x + obj1.width - 30) >= obj2.position.x &&
-            obj1.position.x <= (obj2.position.x + obj2.width) &&
-            (obj1.position.y + obj1.height) >= obj2.position.y &&
-            obj1.position.y <= (obj2.position.y + obj2.height - 15)
+            (obj1.x + obj1.width - 30) >= obj2.x &&
+            obj1.x <= (obj2.x + obj2.width) &&
+            (obj1.y + obj1.height) >= obj2.y &&
+            obj1.y <= (obj2.y + obj2.height - 15)
         ) {
             console.log("colliding");
             console.log(this.maze.objects);
@@ -215,15 +215,15 @@ class Game {
             if (this.checkCollision(this.player, item)) {
                 this.healthBar.updateHealth(150);
                 this.burp.play();
-                item.position.x = 3000; // moves item off canvas
+                item.x = 3000; // moves item off canvas
             };
         })
 
-        // this.maze.objects.forEach(wall => {
-        //     if (this.checkCollision(this.player, wall)) {
-        //         console.log("colliding");
-        //     }
-        // })
+        this.maze.objects.forEach(wall => {
+            if (this.checkCollision(this.player, wall)) {
+                console.log("colliding");
+            }
+        })
     }
 
 

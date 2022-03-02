@@ -3,10 +3,8 @@
 class Player {
     constructor(ctx) {
         this.ctx = ctx;
-        this.position = {
-            x: 100,
-            y: 100
-        }
+        this.x = 100;
+        this.y = 100;
         this.width = 60;
         this.height = 60;
         this.velocity = {
@@ -41,15 +39,15 @@ class Player {
     draw() {
         let char = new Image();
         char.src = "./src/images/char2.png";
-        this.ctx.drawImage(char, this.frameX * this.spriteWidth, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, this.position.x, this.position.y, this.spriteWidth, this.spriteHeight);
+        this.ctx.drawImage(char, this.frameX * this.spriteWidth, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
         // ctx.drawImage(image, sourcex, sy, sWidth, sHeight, destinationx, dy, dWidth, dHeight);
     }
 
 
     update() {
         this.draw();
-        this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
         this.animateFrame();
     }
 
