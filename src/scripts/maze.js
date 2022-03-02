@@ -6,15 +6,13 @@ const Player = require("./player");
 class Maze {
     constructor(ctx) {
         this.ctx = ctx;
-        this.position = {
-            x: 150,
-            y: 150
-        }
-        this.width = 48;
-        this.height = 48;
-        
-        // this.maze = new Maze(ctx);
-        
+        // this.position = {
+        //     x: 150,
+        //     y: 150
+        // }
+        // this.width = 48;
+        // this.height = 48;
+                
         this.objects = []; // create coords as objects? instead of initializing as wall obj
     }
 
@@ -42,7 +40,6 @@ class Maze {
 
         let leftWall = new Image();
         leftWall.src = 'src/images/yellowleft.png';
-
 
 
 

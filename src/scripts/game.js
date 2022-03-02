@@ -17,7 +17,7 @@ class Game {
         this.maze = new Maze(this.ctx);
 
         // constructor(ctx, x, y, width, height, health, maxHealth, color) {
-        this.healthBar = new HealthBar(this.ctx, 1220, 100, 130, 30, 100, 100, "green");
+        this.healthBar = new HealthBar(this.ctx, 1220, 100, 130, 30, 2000, 2000, "green");
         
         this.item1 = new Item(this.ctx, 440, 555);
         this.item2 = new Item(this.ctx, 100, 210);
@@ -176,7 +176,7 @@ class Game {
         this.car.draw();
         this.maze.draw();
         this.healthBar.draw();
-        // this.healthBar.updateHealth(-1); // this works, but need to adjust and move somewhere else? not decrementing correctly
+        this.healthBar.updateHealth(-0.5); // this works, but need to adjust and move somewhere else? not decrementing correctly
 
         
 
@@ -235,7 +235,7 @@ class Game {
         //check for collision with items
         this.items.forEach(item => {
             if (this.checkCollision(this.player, item)) {
-                this.healthBar.updateHealth(20);
+                this.healthBar.updateHealth(150);
                 this.burp.play();
                 item.position.x = 3000; // moves item off canvas
             };

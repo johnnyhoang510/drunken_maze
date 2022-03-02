@@ -29,8 +29,8 @@ class Menu {
 
     draw() {
         this.ctx.drawImage(this.mainMenu, 0, 0, 1400, 700);
-        this.ctx.drawImage(this.mainTitle, 230, 40)
-        this.ctx.drawImage(this.howToPlay, 440, 300);
+        this.ctx.drawImage(this.mainTitle, 230, 5)
+        this.ctx.drawImage(this.howToPlay, 440, 250);
         this.ctx.drawImage(this.clickToStart, 290, 600);
 
     }
@@ -52,27 +52,31 @@ class Menu {
 
     drawText() {
         this.ctx.font = "30px fantasy";
-        this.ctx.fillStyle = "white";
-        this.ctx.fillText("HELP! Bob had one too many drinks and needs to get home...", 287, 240);
+        this.ctx.fillStyle = "gold";
+        this.ctx.fillText("HELP! Bob had one too many drinks and needs to get home...", 287, 190);
 
         this.ctx.font = "30px fantasy";
-        this.ctx.fillStyle = "white";
-        this.ctx.fillText("Can you safely guide him out the maze and into his ride home?", 287, 285);
+        this.ctx.fillStyle = "gold";
+        this.ctx.fillText("Can you safely guide him out the maze and into his ride home?", 287, 235);
 
         this.ctx.font = "30px fantasy";
-        this.ctx.fillStyle = "white";
-        this.ctx.fillText("Use the arrow keys to navigate Bob around the maze", 300, 410);
+        this.ctx.fillStyle = "gold";
+        this.ctx.fillText("Use the arrow keys to navigate Bob around the maze", 300, 360);
 
         this.ctx.font = "30px fantasy";
-        this.ctx.fillStyle = "white";
+        this.ctx.fillStyle = "gold";
+        this.ctx.fillText("(Hint: the keys move Bob in the opposite direction)", 317, 410);
+
+        this.ctx.font = "30px fantasy";
+        this.ctx.fillStyle = "gold";
         this.ctx.fillText("Bob's health gradually decreases...", 420, 461);
 
         this.ctx.font = "30px fantasy";
-        this.ctx.fillStyle = "white";
+        this.ctx.fillStyle = "gold";
         this.ctx.fillText("Collect bottles of water to heal/sober Bob up", 350, 512);
 
         this.ctx.font = "30px fantasy";
-        this.ctx.fillStyle = "white";
+        this.ctx.fillStyle = "gold";
         this.ctx.fillText("If his health hits 0, YOU LOSE!", 430, 563);
     }
 }

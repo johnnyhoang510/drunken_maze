@@ -27,11 +27,11 @@ class HealthBar {
     }
 
     //not working properly
-    drainHealth() {      
-        while (this.health !== 0) {
-            this.health -=1;
-        }
-    }
+    // drainHealth() {      
+    //     while (this.health !== 0) {
+    //         this.health -=1;
+    //     }
+    // }
 
     updateHealth(val) {
         if (this.health > 0) {

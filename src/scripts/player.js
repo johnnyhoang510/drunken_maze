@@ -4,8 +4,8 @@ class Player {
     constructor(ctx) {
         this.ctx = ctx;
         this.position = {
-            x: 1100,
-            y: 200
+            x: 20,
+            y: 70
         }
         this.width = 60;
         this.height = 60;
@@ -14,7 +14,7 @@ class Player {
             y: 0
         }
 
-        this.keys = {  //default to false bc keys aren't pressed
+        this.keys = { 
             right: {
                 pressed: false
             },
