@@ -4,8 +4,8 @@ class Player {
     constructor(ctx) {
         this.ctx = ctx;
         this.position = {
-            x: 20,
-            y: 70
+            x: 1100,
+            y: 400
         }
         this.width = 60;
         this.height = 60;
@@ -30,11 +30,10 @@ class Player {
         };
 
 
-        this.health = 300;
-        this.frameX = 0;
+        this.frameX = 0;  // starting at the first sprite at top left
         this.frameY = 0;
-        this.spriteHeight = 48.5;
-        this.spriteWidth = 32.5;
+        this.spriteHeight = 48.5; // dividing the height of spritesheet per sprite
+        this.spriteWidth = 32.5;  // dividing the width of spritesheet per sprite
         this.animationCount = 0; // used to reset spritesheet
         this.lastKey = "up"; // default set bc char is looking down. use this to track last key to press changes direction of sprite
     }

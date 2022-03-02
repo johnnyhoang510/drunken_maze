@@ -1,18 +1,22 @@
 const Item = require("./item");
 const Car = require("./car");
-const Player = require("./player");
 
 
 class Maze {
     constructor(ctx) {
         this.ctx = ctx;
-        // this.position = {
-        //     x: 150,
-        //     y: 150
-        // }
-        // this.width = 48;
-        // this.height = 48;
-                
+        this.car = new Car(this.ctx, 1164, 392);
+        this.item1 = new Item(this.ctx, 440, 555);
+        this.item2 = new Item(this.ctx, 100, 210);
+        this.item3 = new Item(this.ctx, 1100, 290);
+        this.item4 = new Item(this.ctx, 600, 590);
+        this.item5 = new Item(this.ctx, 1030, 430);
+        this.items = [];
+        this.items.push(this.item1);
+        this.items.push(this.item2);
+        this.items.push(this.item3);
+        this.items.push(this.item4);
+        this.items.push(this.item5);  
         this.objects = []; // create coords as objects? instead of initializing as wall obj
     }
 
@@ -48,6 +52,7 @@ class Maze {
             this.ctx.drawImage(spikesUp, x, 150);
         }
 
+
         for (let y = 183; y <= 321; y += 46) {
             this.ctx.drawImage(spikesRight, 177, y);
         }
@@ -64,10 +69,12 @@ class Maze {
             this.ctx.drawImage(spikesLeft, 445, y);
         }
 
+
         // far right y
         for (let y = 100; y <= 300; y += 46) {
             this.ctx.drawImage(spikesLeft, 1000, y);
         }
+
 
         //far right x
         for (let x = 800; x <= 1122; x += 46) {
@@ -112,17 +119,16 @@ class Maze {
         // top brick wall
         for (let x = 32; x <= 1000; x += 256) {
             this.ctx.drawImage(brickWall, x, 0);
-            // let wall = new Wall(brickWall, x, 0, 48, 48);
-            // console.log("yo");
-            // this.wallObjects.push(wall);   // ------ something is broken with the animate??
         }
         this.ctx.drawImage(brickWall, 1024, 0, 144, 32);
+
 
         //bottom brick wall
         for (let x = 32; x <= 1000; x += 256) {
             this.ctx.drawImage(bottomWall, x, 670);
         }
         this.ctx.drawImage(bottomWall, 1024, 670, 144, 32);
+
 
         // right brick wall
         this.ctx.drawImage(rightWall, 1168, 0);
@@ -135,13 +141,13 @@ class Maze {
         this.ctx.drawImage(leftWall, 0, 185);
         this.ctx.drawImage(leftWall, 0, 442);
 
-
-        // this.item1.draw();
-        // this.item2.draw();
-        
-        // this.player.draw();
-        // this.car.draw();
-
+        // items/car
+        this.item1.draw();
+        this.item2.draw();
+        this.item3.draw();
+        this.item4.draw();
+        this.item5.draw();
+        this.car.draw();
     }
 
 
