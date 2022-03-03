@@ -36,7 +36,7 @@ class HealthBar {
     updateHealth(val) {
         if (this.health > 0) {
                 this.health += val;
-                this.width = (this.health / this.maxHealth) * this.maxWidth;
+                this.width = (this.health / this.maxHealth) * this.maxWidth; //updates the bar
         }
     }
 }

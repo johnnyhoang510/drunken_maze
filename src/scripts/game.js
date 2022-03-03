@@ -270,7 +270,7 @@ class Game {
 
 
         // change health color
-        if (this.healthBar.health < 1000) {
+        if (this.healthBar.health < 900) {
             this.healthBar.color = "red";
         }
 
@@ -291,7 +291,7 @@ class Game {
         //check for collision with items
         this.maze.items.forEach(item => {
             if (this.checkCollision(this.player, item)) {
-                this.healthBar.updateHealth(250);
+                this.healthBar.updateHealth(310);
                 this.lightRadius += 15
                 this.burp.play();
                 item.x = 3000; // moves item off canvas

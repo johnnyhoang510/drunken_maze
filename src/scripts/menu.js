@@ -22,7 +22,7 @@ class Menu {
     startGame(e) {
         e.preventDefault();
         this.atMainMenu = false;
-        // this.createGame.music.play(); //------ WORKS!
+        // this.createGame.music.play(); //------ works, but no volume slider or mute/unmute button
         this.createGame.animate();
         document.getElementById("tips").style.visibility = "visible";
     }
