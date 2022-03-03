@@ -15,7 +15,7 @@ class Game {
         this.maze = new Maze(this.ctx);
 
         // constructor(ctx, x, y, width, height, health, maxHealth, color) {
-        this.healthBar = new HealthBar(this.ctx, 1220, 100, 130, 30, 2100, 2100, "green");
+        this.healthBar = new HealthBar(this.ctx, 1220, 100, 130, 30, 2250, 2250, "green");
         this.healthBar.color = "green";
         
         this.music = new Audio();
@@ -231,7 +231,7 @@ class Game {
         this.player.draw();
         this.maze.draw();
         this.healthBar.draw();
-        // this.healthBar.updateHealth(-0.5); // this works, but need to adjust and move somewhere else?
+        this.healthBar.updateHealth(-0.5); // this works, but need to adjust and move somewhere else?
     }
 
 
@@ -252,7 +252,7 @@ class Game {
         animateId = requestAnimationFrame(this.animate.bind(this)) // save to var so we can cancel later
         this.ctx.clearRect(0, 0, 1400, 700);
 
-        // this.drawFog();
+        this.drawFog();
 
         //drawing background
         this.ctx.beginPath();
@@ -270,7 +270,7 @@ class Game {
 
 
         // change health color
-        if (this.healthBar.health < 900) {
+        if (this.healthBar.health < 1000) {
             this.healthBar.color = "red";
         }
 
@@ -282,7 +282,7 @@ class Game {
         }
         
         //game is lost. render lost screen
-        if (this.healthBar.health === 0 || this.lightRadius === 0) {
+        if (this.healthBar.health === 0) {
             this.gameOver = true;
             cancelAnimationFrame(animateId);
             this.showLost();
@@ -291,8 +291,8 @@ class Game {
         //check for collision with items
         this.maze.items.forEach(item => {
             if (this.checkCollision(this.player, item)) {
-                this.healthBar.updateHealth(150);
-                this.lightRadius += 20
+                this.healthBar.updateHealth(250);
+                this.lightRadius += 15
                 this.burp.play();
                 item.x = 3000; // moves item off canvas
             };
@@ -300,7 +300,7 @@ class Game {
 
         this.maze.beers.forEach(beer => {
             if (this.checkCollision(this.player, beer)) {
-                this.lightRadius -= 10;
+                this.lightRadius -= 15;
                 this.burp.play();
                 beer.x = 2500;
             }
@@ -313,7 +313,7 @@ class Game {
             if (this.checkCollision(this.player, wall)) {
                 if (this.player.lastKey === "down") {
                     this.player.y = wall.y + wall.height;
-                    this.player.keys.down.pressed = false;
+                    this.player.keys.down.pressed = false; 
                     this.player.animationCount = 0; // stops frame from switching
                     this.player.velocity.x = 0;
                 } else if (this.player.lastKey === "up") {
@@ -344,18 +344,17 @@ class Game {
     }
 
 
-
     // ctx.drawImage(image, sourcex, sy, sWidth, sHeight, destinationx, dy, dWidth, dHeight);
     drawVictory() {
-        this.ctx.drawImage(this.victory, 490, 100);
+        this.ctx.drawImage(this.victory, 520, 100);
     }
 
     drawPlayAgain() {
-        this.ctx.drawImage(this.playAgain, 450, 250, 400, 100);
+        this.ctx.drawImage(this.playAgain, 480, 250, 400, 100);
     }
 
     drawLost() {
-        this.ctx.drawImage(this.lost, 480, 100);
+        this.ctx.drawImage(this.lost, 510, 100);
     }
 
     drawPlayAgainBG() {
@@ -365,17 +364,17 @@ class Game {
     drawTextWin() {
         this.ctx.font = "48px fantasy";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`You won with ${this.healthBar.health} health remaining!`, 290, 450);
+        this.ctx.fillText(`You won with ${this.healthBar.health} health remaining!`, 320, 450);
 
         this.ctx.font = "48px fantasy";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText("Thank you for getting Bob home safely!", 270, 550);
+        this.ctx.fillText("Thank you for getting Bob home safely!", 290, 550);
     }
 
     drawTextLost() {
         this.ctx.font = "48px fantasy";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText("Bob blacked out...", 460, 450);
+        this.ctx.fillText("Bob blacked out...", 490, 450);
     }
 }
 

@@ -30,9 +30,8 @@ class Maze {
         this.beers.push(this.beer4);
         this.beers.push(this.beer5);
 
-
+        this.vertObjects = []; // create coords as objects
         this.horiObjects = [];
-        this.vertObjects = []; // create coords as objects instead of initializing as wall obj
     }
 
     draw() {
@@ -122,13 +121,6 @@ class Maze {
         }
 
 
-        // for (let x = 785; x <= 1030; x += 46) {
-        //     this.ctx.drawImage(spikesUp, x, 450);
-        // }
-        // this.ctx.drawImage(spikesUp, 1062, 450, 30, 48);
-
-
-
         // -------------- BRICK WALLS -----------------
 
         // top brick wall
@@ -156,6 +148,7 @@ class Maze {
         this.ctx.drawImage(leftWall, 0, 185);
         this.ctx.drawImage(leftWall, 0, 442);
 
+
         // items/car
         this.item1.draw();
         this.item2.draw();
@@ -163,7 +156,6 @@ class Maze {
         this.item4.draw();
         this.item5.draw();
         this.car.draw();
-
         this.beer1.draw();
         this.beer2.draw();
         this.beer3.draw();
@@ -192,7 +184,7 @@ class Maze {
             {x: 475, y: 160, width: 40, height: 463}, //middle left y
             {x: 1020, y: 100, width: 40, height: 200}, //far right y
             {x: 775, y: 100, width: 40, height: 263}, //middle right y
-            {x: 1076, y: 350, width: 41, height: 214}, //near end y
+            {x: 1076, y: 350, width: 43, height: 214}, //near end y
             {x: 630, y: 160, width: 40, height: 490}, //middle y
             {x: 1178, y: 0, width: 40, height: 388}, //right brick wall upper
             {x: 1181, y: 500, width: 40, height: 200}, //right brick wall lower
@@ -203,18 +195,10 @@ class Maze {
             {x: -35, y: 20, width: 40, height: 150} // entrance
         ]
         
-        // this.drawTips();
+        
     }
 
-    // drawTips() {
-    //     this.ctx.font = "40px Cochin";
-    //     this.ctx.fillStyle = "black";
-    //     this.ctx.fillText("Tips:", 1220, 230);
-
-    //     this.ctx.font = "27px Cochin";
-    //     this.ctx.fillStyle = "black";
-    //     this.ctx.fillText("Water bottles can help increase visibility while also regaining health!", 1225, 272);
-    // }
+    
 }
 
 

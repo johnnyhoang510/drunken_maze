@@ -1,5 +1,4 @@
 const Game = require("./game");
-const gameTips = document.getElementById("tips");
 
 class Menu {
     constructor(ctx, fogctx) {
