@@ -202,12 +202,14 @@ class Maze {
             {x: 784, y: 556, width: 40, height: 20}, // bottom right x cover
             {x: -35, y: 20, width: 40, height: 150} // entrance
         ]
-    
+        
+        // this.drawTips();
     }
 
-
-    // update() {
-    //     this.draw();
+    // drawTips() {
+    //     this.ctx.font = "30px fantasy";
+    //     this.ctx.fillStyle = "gold";
+    //     this.ctx.fillText("HELP! Bob had one too many drinks and needs to get home...", 287, 190);
     // }
 }
 

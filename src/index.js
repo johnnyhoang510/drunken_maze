@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     fogcanvas.height = 700;
 
 
-
     const game = new Game(ctx, fogctx);
     game.animate();
 

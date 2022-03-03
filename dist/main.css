@@ -18,3 +18,24 @@ img {
   width: 30px;
   height: 30px;
 }
+
+h3 {
+  position: absolute;
+  margin-left: 1230px;
+  margin-top: 200px;
+  font-size: 35px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+ul {
+  width: 250px;
+  position: absolute;
+  margin-left: 1200px;
+  margin-top: 260px;
+  font-size: 24px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+li {
+  padding-bottom: 30px;
+}

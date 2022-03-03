@@ -2,6 +2,7 @@ const Player = require("./player");
 const Maze = require("./maze");
 const HealthBar = require("./healthbar");
 
+// const muteButton = document.getElementById('mutebtn');   ----- not working
 
 class Game {
     constructor(ctx, fogctx) {
@@ -37,7 +38,20 @@ class Game {
         window.addEventListener("keydown", this.keyDown.bind(this));
         window.addEventListener("keyup", this.keyUp.bind(this));
         window.addEventListener("click", this.playAgainScreen.bind(this));
+        // window.addEventListener("click", this.muteVolume.bind(this));   ---- not working
     }
+
+    // not working ----------------
+    // muteVolume(e) {
+    //     // e.preventDefault();
+    //     if (this.music.muted) {
+    //         this.music.muted = false;
+    //         muteButton.innerHTML = "Mute";
+    //     } else {
+    //         this.music.pause();
+    //         muteButton.innerHTML = "Unmute";
+    //     }
+    // }
 
 
     keyDown(e) {
@@ -153,7 +167,7 @@ class Game {
     // }
 
     playAgainScreen(e){  
-        // e.preventDefault();  this doesnt allow github link to be clicked
+        // e.preventDefault();  // this doesnt allow github link to be clicked
         if (this.gameOver) {
             this.gameOver = true;
             this.gameRunning = false;
@@ -278,9 +292,9 @@ class Game {
 
         this.maze.beers.forEach(beer => {
             if (this.checkCollision(this.player, beer)) {
-                this.burp.play();
                 this.lightRadius -= 20;
-                beer.x = 2000;
+                this.burp.play();
+                beer.x = 2500;
             }
         })
 
