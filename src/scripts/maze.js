@@ -149,7 +149,7 @@ class Maze {
         this.ctx.drawImage(leftWall, 0, 442);
 
 
-        // items/car
+        // ----------- items/car ------------
         this.item1.draw();
         this.item2.draw();
         this.item3.draw();
@@ -162,7 +162,8 @@ class Maze {
         this.beer4.draw();
         this.beer5.draw();
 
-        // creating coord objects
+
+        // -------- creating coord objects---------
         this.horiObjects = [
             {x: 0, y: -10, width: 1250, height: 40}, // top brick wall
             {x: 0, y: 170, width: 180, height: 40}, // start spikes
