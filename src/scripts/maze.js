@@ -5,7 +5,7 @@ const Beer = require("./beer");
 class Maze {
     constructor(ctx) {
         this.ctx = ctx;
-        this.car = new Car(this.ctx, 1170, 392);
+        this.car = new Car(this.ctx, 1165, 392);
         this.item1 = new Item(this.ctx, 440, 555);
         this.item2 = new Item(this.ctx, 100, 210);
         this.item3 = new Item(this.ctx, 1100, 290);
@@ -176,7 +176,7 @@ class Maze {
             {x: 0, y: 170, width: 180, height: 40}, // start spikes
             {x: 210, y: 510, width: 250, height: 40}, // bottom left x
             {x: 800, y: 315, width: 360, height: 40.1}, // far right x
-            {x: 785, y: 550, width: 320, height: 40}, // far right bottom x
+            {x: 789, y: 550, width: 320, height: 40}, // far right bottom x
             {x: 32, y: 660, width: 1112, height: 40}, // bottom brick wall
             {x: 181, y: 330, width: 10, height: 40}, // inner y cover
             {x: 483, y: 150, width: 10, height: 40}, // middle left y cover
@@ -192,10 +192,10 @@ class Maze {
             {x: 475, y: 160, width: 40, height: 463}, //middle left y
             {x: 1020, y: 100, width: 40, height: 200}, //far right y
             {x: 775, y: 100, width: 40, height: 263}, //middle right y
-            {x: 1080, y: 350, width: 40, height: 214}, //near end y
+            {x: 1076, y: 350, width: 41, height: 214}, //near end y
             {x: 630, y: 160, width: 40, height: 490}, //middle y
             {x: 1178, y: 0, width: 40, height: 388}, //right brick wall upper
-            {x: 1178, y: 500, width: 40, height: 200}, //right brick wall lower
+            {x: 1181, y: 500, width: 40, height: 200}, //right brick wall lower
             {x: -10, y: 180, width: 40, height: 520}, //left brick wall lower
             // {x: 1, y: 1, width: 32, height: 31}, //left brick wall upper
             {x: 207, y: 520, width: 40, height: 20}, // bottom left x cover
@@ -207,9 +207,13 @@ class Maze {
     }
 
     // drawTips() {
-    //     this.ctx.font = "30px fantasy";
-    //     this.ctx.fillStyle = "gold";
-    //     this.ctx.fillText("HELP! Bob had one too many drinks and needs to get home...", 287, 190);
+    //     this.ctx.font = "40px Cochin";
+    //     this.ctx.fillStyle = "black";
+    //     this.ctx.fillText("Tips:", 1220, 230);
+
+    //     this.ctx.font = "27px Cochin";
+    //     this.ctx.fillStyle = "black";
+    //     this.ctx.fillText("Water bottles can help increase visibility while also regaining health!", 1225, 272);
     // }
 }
 

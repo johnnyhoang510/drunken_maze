@@ -15,7 +15,8 @@ class Game {
         this.maze = new Maze(this.ctx);
 
         // constructor(ctx, x, y, width, height, health, maxHealth, color) {
-        this.healthBar = new HealthBar(this.ctx, 1220, 100, 130, 30, 2000, 2000, "green");
+        this.healthBar = new HealthBar(this.ctx, 1220, 100, 130, 30, 2100, 2100, "green");
+        this.healthBar.color = "green";
         
         this.music = new Audio();
         this.music.src = "src/images/audio.mp3";
@@ -188,6 +189,7 @@ class Game {
         this.gameRunning = false;
         this.ctx.clearRect(0, 0, 1400, 700);
         this.fogctx.clearRect(0, 0, 1400, 700);
+        document.getElementById("tips").style.visibility = "hidden";
         this.drawPlayAgainBG();
         this.drawVictory();
         this.drawPlayAgain();
@@ -200,6 +202,7 @@ class Game {
         this.gameRunning = false;
         this.ctx.clearRect(0, 0, 1400, 700);
         this.fogctx.clearRect(0, 0, 1400, 700);
+        document.getElementById("tips").style.visibility = "hidden";
         this.drawPlayAgainBG();
         this.drawLost();
         this.drawPlayAgain();
@@ -265,7 +268,12 @@ class Game {
         //updating player movement
         this.player.update();
 
-        
+
+        // change health color
+        if (this.healthBar.health < 900) {
+            this.healthBar.color = "red";
+        }
+
         //checking for collision with car. game should end if this is true, render win screen
         if (this.checkCollision(this.player, this.maze.car)) {
             this.gameOver = true;
@@ -292,7 +300,7 @@ class Game {
 
         this.maze.beers.forEach(beer => {
             if (this.checkCollision(this.player, beer)) {
-                this.lightRadius -= 20;
+                this.lightRadius -= 10;
                 this.burp.play();
                 beer.x = 2500;
             }

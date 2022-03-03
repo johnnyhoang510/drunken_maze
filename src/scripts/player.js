@@ -3,7 +3,7 @@
 class Player {
     constructor(ctx) {
         this.ctx = ctx;
-        this.x = 100;
+        this.x = 1100;
         this.y = 600;
         this.width = 40;
         this.height = 40;

@@ -15,12 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
     fogcanvas.width = 1200;
     fogcanvas.height = 700;
 
+    document.getElementById("tips").style.visibility = "hidden";
 
-    const game = new Game(ctx, fogctx);
-    game.animate();
+    // const game = new Game(ctx, fogctx);
+    // game.animate();
 
-    // const menu = new Menu(ctx, fogctx);
-    // menu.animate();
+    const menu = new Menu(ctx, fogctx);
+    menu.animate();
 
     
 })

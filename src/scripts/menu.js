@@ -1,5 +1,5 @@
 const Game = require("./game");
-
+const gameTips = document.getElementById("tips");
 
 class Menu {
     constructor(ctx, fogctx) {
@@ -25,6 +25,7 @@ class Menu {
         this.atMainMenu = false;
         // this.createGame.music.play(); //------ WORKS!
         this.createGame.animate();
+        document.getElementById("tips").style.visibility = "visible";
     }
 
     draw() {

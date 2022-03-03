@@ -5,13 +5,13 @@ class Car {
         this.ctx = ctx;
         this.x = x;
         this.y = y;
-        this.width = 32;
-        this.height = 65;
+        this.width = 33;
+        this.height = 68;
     }
 
     draw() {
         let carImg = new Image();
-        carImg.src = 'src/images/car.png';
+        carImg.src = 'src/images/taxi2.png';
         this.ctx.drawImage(carImg, this.x, this.y, this.width, this.height);
     }
 
