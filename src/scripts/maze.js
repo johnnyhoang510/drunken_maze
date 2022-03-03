@@ -1,6 +1,6 @@
 const Item = require("./item");
 const Car = require("./car");
-
+const Beer = require("./beer");
 
 class Maze {
     constructor(ctx) {
@@ -11,15 +11,26 @@ class Maze {
         this.item3 = new Item(this.ctx, 1100, 290);
         this.item4 = new Item(this.ctx, 600, 590);
         this.item5 = new Item(this.ctx, 1030, 430);
-
-        // this.dummyItem = new Item(this.ctx, 790, 349);
-
         this.items = [];
         this.items.push(this.item1);
         this.items.push(this.item2);
         this.items.push(this.item3);
         this.items.push(this.item4);
-        this.items.push(this.item5);  
+        this.items.push(this.item5);
+        
+        this.beers = [];
+        this.beer1 = new Beer(this.ctx, 350, 200);
+        this.beer2 = new Beer(this.ctx, 360, 555);
+        this.beer3 = new Beer(this.ctx, 512, 400);
+        this.beer4 = new Beer(this.ctx, 920, 280);
+        this.beer5 = new Beer(this.ctx, 1134, 625);
+        this.beers.push(this.beer1);
+        this.beers.push(this.beer2);
+        this.beers.push(this.beer3);
+        this.beers.push(this.beer4);
+        this.beers.push(this.beer5);
+
+
         this.horiObjects = [];
         this.vertObjects = []; // create coords as objects instead of initializing as wall obj
     }
@@ -153,8 +164,11 @@ class Maze {
         this.item5.draw();
         this.car.draw();
 
-        // this.dummyItem.draw();
-
+        this.beer1.draw();
+        this.beer2.draw();
+        this.beer3.draw();
+        this.beer4.draw();
+        this.beer5.draw();
 
         // creating coord objects
         this.horiObjects = [
@@ -176,7 +190,7 @@ class Maze {
         this.vertObjects = [
             {x: 175, y: 183, width: 40, height: 173}, //inner y
             {x: 475, y: 160, width: 40, height: 463}, //middle left y
-            {x: 1025, y: 100, width: 40, height: 200}, //far right y
+            {x: 1020, y: 100, width: 40, height: 200}, //far right y
             {x: 775, y: 100, width: 40, height: 263}, //middle right y
             {x: 1080, y: 350, width: 40, height: 214}, //near end y
             {x: 630, y: 160, width: 40, height: 490}, //middle y
@@ -185,7 +199,8 @@ class Maze {
             {x: -10, y: 180, width: 40, height: 520}, //left brick wall lower
             // {x: 1, y: 1, width: 32, height: 31}, //left brick wall upper
             {x: 207, y: 520, width: 40, height: 20}, // bottom left x cover
-            {x: 784, y: 556, width: 40, height: 20} // bottom right x cover
+            {x: 784, y: 556, width: 40, height: 20}, // bottom right x cover
+            {x: -35, y: 20, width: 40, height: 150} // entrance
         ]
     
     }

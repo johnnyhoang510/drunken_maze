@@ -7,11 +7,10 @@ class Game {
     constructor(ctx, fogctx) {
         this.ctx = ctx;
         this.fogctx = fogctx;
-        this.lightRadius = 100;
+        this.lightRadius = 80;
         this.gameRunning = false; // want to start at main menu
         this.gameOver = false;
         this.player = new Player(this.ctx);
-        // this.car = new Car(this.ctx, 1164, 392);
         this.maze = new Maze(this.ctx);
 
         // constructor(ctx, x, y, width, height, health, maxHealth, color) {
@@ -41,65 +40,117 @@ class Game {
     }
 
 
-    keyDown(e){
+    keyDown(e) {
+        let kc = e.keyCode;
         e.preventDefault();
-        switch (e.keyCode) {
-            case 37:
-                this.player.keys.left.pressed = true;
-                if (this.player.keys.left.pressed) {
-                    this.player.velocity.x = 1.4;
-                    this.player.keys.up.pressed = false;
-                    this.player.keys.right.pressed = false;
-                    this.player.keys.down.pressed = false;
-                    this.player.velocity.y = 0;
-                }
-                this.player.lastKey = "left";
-                break;
-    
-            case 40:
-                this.player.keys.down.pressed = true;
-                this.player.velocity.y = -1.4;
-                this.player.lastKey = "down";
-                break;
-    
-            case 39:
-                this.player.keys.right.pressed = true;
-                this.player.velocity.x = -1.4;
-                this.player.lastKey = "right";
-                break;
-    
-            case 38:
-                this.player.keys.up.pressed = true;
-                this.player.velocity.y = 1.4;
-                this.player.lastKey = "up";
-                break;
-        }
-    } 
-    
-    keyUp(e) {
-        e.preventDefault();
-        switch (e.keyCode) {
-            case 37:
-                this.player.keys.left.pressed = false;
-                this.player.velocity.x = 0;
-                break;
 
-            case 40:
-                this.player.keys.down.pressed = false;
-                this.player.velocity.y = 0;
-                break;
-
-            case 39:
-                this.player.keys.right.pressed = false
-                this.player.velocity.x = 0
-                break;
-
-            case 38:
-                this.player.keys.up.pressed = false;
-                this.player.velocity.y = 0;
-                break;
+        if (kc === 37) {
+            this.player.keys.left.pressed = true;
+            this.player.velocity.x = 1.4;
+            this.player.velocity.y = 0;
+            this.player.lastKey = "left";
+        } else if (kc === 40) {
+            this.player.keys.down.pressed = true;
+            this.player.velocity.y = -1.4;
+            this.player.velocity.x = 0;
+            this.player.lastKey = "down";
+        } else if (kc === 39) {
+            this.player.keys.right.pressed = true;
+            this.player.velocity.x = -1.4;
+            this.player.velocity.y = 0;
+            this.player.lastKey = "right";
+        } else if (kc === 38) {
+            this.player.keys.up.pressed = true;
+            this.player.velocity.y = 1.4;
+            this.player.velocity.x = 0;
+            this.player.lastKey = "up";
         }
     }
+
+
+    keyUp(e) {
+        let kc = e.keyCode;
+        e.preventDefault();
+
+        if (kc === 37) {
+            this.player.keys.left.pressed = false;
+            this.player.velocity.x = 0;
+            this.player.velocity.y = 0;
+            this.player.lastKey = "left";
+        } else if (kc === 40) {
+            this.player.keys.down.pressed = false;
+            this.player.velocity.y = 0;
+            this.player.velocity.x = 0;
+            this.player.lastKey = "down";
+        } else if (kc === 39) {
+            this.player.keys.right.pressed = false;
+            this.player.velocity.x = 0;
+            this.player.velocity.y = 0;
+            this.player.lastKey = "right";
+        } else if (kc === 38) {
+            this.player.keys.up.pressed = false;
+            this.player.velocity.y = 0;
+            this.player.velocity.x = 0;
+            this.player.lastKey = "up";
+        }
+    }
+
+
+    // keyDown(e){
+    //     e.preventDefault();
+    //     switch (e.keyCode) {
+    //         case 37:
+    //             this.player.keys.left.pressed = true;
+    //             this.player.velocity.x = 1.4;
+    //             this.player.lastKey = "left";
+    //             break;
+    
+    //         case 40:
+    //             this.player.keys.down.pressed = true;
+    //             this.player.velocity.y = -1.4;
+    //             this.player.lastKey = "down";
+    //             break;
+    
+    //         case 39:
+    //             this.player.keys.right.pressed = true;
+    //             this.player.velocity.x = -1.4;
+    //             this.player.lastKey = "right";
+    //             break;
+    
+    //         case 38:
+    //             this.player.keys.up.pressed = true;
+    //             this.player.velocity.y = 1.4;
+    //             this.player.lastKey = "up";
+    //             break;
+    //     }
+    // }
+    
+    
+    
+    // keyUp(e) {
+    //     e.preventDefault();
+    //     switch (e.keyCode) {
+    //         case 37:
+    //             this.player.keys.left.pressed = false;
+    //             this.player.velocity.x = 0;
+    //             break;
+
+    //         case 40:
+    //             this.player.keys.down.pressed = false;
+    //             this.player.velocity.y = 0;
+    //             break;
+
+    //         case 39:
+    //             this.player.keys.right.pressed = false
+    //             this.player.velocity.x = 0
+    //             break;
+
+    //         case 38:
+    //             this.player.keys.up.pressed = false;
+    //             this.player.velocity.y = 0;
+    //             break;
+    //     }
+    // }
 
     playAgainScreen(e){  
         // e.preventDefault();  this doesnt allow github link to be clicked
@@ -209,7 +260,7 @@ class Game {
         }
         
         //game is lost. render lost screen
-        if (this.healthBar.health === 0) {
+        if (this.healthBar.health === 0 || this.lightRadius === 0) {
             this.gameOver = true;
             cancelAnimationFrame(animateId);
             this.showLost();
@@ -219,9 +270,18 @@ class Game {
         this.maze.items.forEach(item => {
             if (this.checkCollision(this.player, item)) {
                 this.healthBar.updateHealth(150);
+                this.lightRadius += 20
                 this.burp.play();
                 item.x = 3000; // moves item off canvas
             };
+        })
+
+        this.maze.beers.forEach(beer => {
+            if (this.checkCollision(this.player, beer)) {
+                this.burp.play();
+                this.lightRadius -= 20;
+                beer.x = 2000;
+            }
         })
 
         // player.y = obj2.y + obj2.height   ---> checks for vert

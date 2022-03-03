@@ -3,8 +3,8 @@
 class Player {
     constructor(ctx) {
         this.ctx = ctx;
-        this.x = 730;
-        this.y = 520;
+        this.x = 100;
+        this.y = 600;
         this.width = 40;
         this.height = 40;
         this.velocity = {
