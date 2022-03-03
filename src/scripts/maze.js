@@ -12,7 +12,7 @@ class Maze {
         this.item4 = new Item(this.ctx, 600, 590);
         this.item5 = new Item(this.ctx, 1030, 430);
 
-        // this.dummyItem = new Item(this.ctx, 775, 556);
+        // this.dummyItem = new Item(this.ctx, 790, 349);
 
         this.items = [];
         this.items.push(this.item1);
@@ -161,25 +161,31 @@ class Maze {
             {x: 0, y: -10, width: 1250, height: 40}, // top brick wall
             {x: 0, y: 170, width: 180, height: 40}, // start spikes
             {x: 210, y: 510, width: 250, height: 40}, // bottom left x
-            {x: 204, y: 514, width: 40, height: 40}, // bottom left x cover   NOT WORKING!!
             {x: 800, y: 315, width: 360, height: 40.1}, // far right x
-            {x: 785, y: 550, width: 320, height: 55}, // far right bottom x
+            {x: 785, y: 550, width: 320, height: 40}, // far right bottom x
             {x: 32, y: 660, width: 1112, height: 40}, // bottom brick wall
-
+            {x: 181, y: 330, width: 10, height: 40}, // inner y cover
+            {x: 483, y: 150, width: 10, height: 40}, // middle left y cover
+            {x: 653, y: 155, width: 10, height: 40}, // middle y cover
+            {x: 790, y: 90, width: 10, height: 40}, // middle right y top cover
+            {x: 790, y: 340, width: 10, height: 40}, // middle right y bottom cover
+            {x: 1040, y: 81, width: 10, height: 40}, // top right y cover
+            
         ]
-
+        
         this.vertObjects = [
             {x: 175, y: 183, width: 40, height: 173}, //inner y
-            {x: 181, y: 330, width: 10, height: 40}, // inner y cover
             {x: 475, y: 160, width: 40, height: 463}, //middle left y
             {x: 1025, y: 100, width: 40, height: 200}, //far right y
-            {x: 775, y: 100, width: 40, height: 250}, //middle right y
+            {x: 775, y: 100, width: 40, height: 263}, //middle right y
             {x: 1080, y: 350, width: 40, height: 214}, //near end y
-            {x: 630, y: 150, width: 40, height: 490}, //middle y
+            {x: 630, y: 160, width: 40, height: 490}, //middle y
             {x: 1178, y: 0, width: 40, height: 388}, //right brick wall upper
             {x: 1178, y: 500, width: 40, height: 200}, //right brick wall lower
-            {x: -10, y: 180, width: 40, height: 520} //left brick wall lower
+            {x: -10, y: 180, width: 40, height: 520}, //left brick wall lower
             // {x: 1, y: 1, width: 32, height: 31}, //left brick wall upper
+            {x: 207, y: 520, width: 40, height: 20}, // bottom left x cover
+            {x: 784, y: 556, width: 40, height: 20} // bottom right x cover
         ]
     
     }

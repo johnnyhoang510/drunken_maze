@@ -46,7 +46,13 @@ class Game {
         switch (e.keyCode) {
             case 37:
                 this.player.keys.left.pressed = true;
-                this.player.velocity.x = 1.4;
+                if (this.player.keys.left.pressed) {
+                    this.player.velocity.x = 1.4;
+                    this.player.keys.up.pressed = false;
+                    this.player.keys.right.pressed = false;
+                    this.player.keys.down.pressed = false;
+                    this.player.velocity.y = 0;
+                }
                 this.player.lastKey = "left";
                 break;
     
