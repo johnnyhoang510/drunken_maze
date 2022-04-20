@@ -14,6 +14,7 @@ In this game, users will be able to:
 
 ## Features
 
+<img src="https://media.giphy.com/media/OjUL12SKvOmXePjQAL/giphy.gif">
 <img src="./src/images/featured.png">
 
 * The following code block detects collision and stops the character from walking through walls. Stored in the maze are all the wall objects - both vertical and horizonatal. I used a function checkCollision and also tracked which direction the character was coming from by reading an instance variable from the last key that was pressed from the player. Depending on which key was pressed, the logic will decide where the player's x or y position will end up and to also stop their animation frame from switching.
