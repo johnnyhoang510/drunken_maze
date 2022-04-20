@@ -14,7 +14,7 @@ In this game, users will be able to:
 
 ## Features
 
-<img src="./src/images/feature.png">
+<img src="./src/images/featured.png">
 
 * The following code block detects collision and stops the character from walking through walls. It also tracks which direction the character is coming from by reading an instance variable from the last key that was pressed from the player. Depending on which key was pressed, the logic will decide where the player's x or y position will end up and to also stop their animation frame from switching.
 ```js
