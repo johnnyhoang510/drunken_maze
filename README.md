@@ -10,13 +10,53 @@ In this game, users will be able to:
 * Move the character using the arrow keys
 * Pick up items with different effects
 * Play again once the game is over
+* Mute/unmute game music
 
-## Wireframes
+## Features
 
-![js_wireframe](https://user-images.githubusercontent.com/94396944/155635987-2e58469d-d682-408b-8d65-2760d543492d.png)
+* The following code block detects collision and stops the character from walking through walls. It also tracks which direction the character is coming from by reading an instance variable from the last key that was pressed from the player. Depending on which direction, the logic will decide where the player's x or y position will end up.
+```js
+this.maze.horiObjects.forEach(wall => {
+            if (this.checkCollision(this.player, wall)) {
+                if (this.player.lastKey === "down") {
+                    this.player.y = wall.y + wall.height;
+                    this.player.keys.down.pressed = false; 
+                    this.player.animationCount = 0; // stops frame from switching
+                    this.player.velocity.x = 0;
+                } else if (this.player.lastKey === "up") {
+                    this.player.y = wall.y - wall.height; // if char is coming from top, this will keep them above the obj
+                    this.player.keys.up.pressed = false;
+                    this.player.animationCount = 0;
+                    this.player.velocity.x = 0;
+                }
+            }
+        })
+
+        this.maze.vertObjects.forEach(wall => {
+            if (this.checkCollision(this.player, wall)) {
+                if (this.player.lastKey === "right") {
+                    this.player.x = wall.x + wall.width;
+                    this.player.keys.right.pressed = false;
+                    this.player.animationCount = 0;
+                    this.player.velocity.x = 0;
+
+                } else if (this.player.lastKey === "left") {
+                    this.player.x = wall.x - wall.width; // if coming from left, keeps them on left side
+                    this.player.keys.left.pressed = false;
+                    this.player.animationCount = 0;
+                    this.player.velocity.x = 0;
+                }
+            }
+        })
+```
 
 ## Technologies, Libraries, APIs
 * JavaScript
 * HTML
 * CSS
 * Canvas API
+
+## Future Improvements
+* More levels
+* Additional characters to choose from
+* More items with different effects
