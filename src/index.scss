@@ -6,12 +6,16 @@
     position: absolute;
 }
 
-.github {
+#socials {
     position: absolute;
     margin-left: 1220px;
+
+    a {
+        padding: 0 5px;
+    }
 }
 
-img {
+.social-icon {
     width: 30px;
     height: 30px;
 }

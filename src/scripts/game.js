@@ -4,6 +4,8 @@ const HealthBar = require("./healthbar");
 // const Menu = require("./menu");
 
 // const muteButton = document.getElementById('mutebtn');   ----- not working
+// const githubIcon = document.getElementById('github');
+// githubIcon.addEventListener('click')
 
 class Game {
     constructor(ctx, fogctx) {
@@ -17,7 +19,7 @@ class Game {
 
         //2250
         // constructor(ctx, x, y, width, height, health, maxHealth, color) {
-        this.healthBar = new HealthBar(this.ctx, 1220, 100, 130, 30, 2250, 2250, "green");
+        this.healthBar = new HealthBar(this.ctx, 1220, 100, 130, 30, 100, 2250, "green");
         this.healthBar.color = "green";
         
         this.music = new Audio();
@@ -41,6 +43,9 @@ class Game {
 
         window.addEventListener("keydown", this.keyDown.bind(this));
         window.addEventListener("keyup", this.keyUp.bind(this));
+
+        // const github = document.getElementById('github');
+        // window.addEventListener('click')
         // window.addEventListener("keydown", this.playAgainScreen.bind(this));
         // window.addEventListener("click", this.muteVolume.bind(this));   ---- not working
     }
@@ -127,22 +132,22 @@ class Game {
     }
 
 
-    playAgainScreen(e){
-        // if (!this.gameRunning) return null;
-        // console.log(this, "why am i hitting this")
-        e?.preventDefault();  // this doesnt allow github link to be clicked?
-        if (this.gameOver) {
-            if (e.keyCode === 13 && !this.gameRunning) {
-                // this.gameOver = true;
-                // this.gameRunning = false;
-                // let newGame = new Maze(this.ctx);  // is there a better way?
-                this.player = new Player(this.ctx);
-                this.maze = new Maze(this.ctx);
-                this.gameStart();
-                this.animate();
-            }
-        }
-    }
+    // playAgainScreen(e){
+    //     // if (!this.gameRunning) return null;
+    //     // console.log(this, "why am i hitting this")
+    //     e?.preventDefault();  // this doesnt allow github link to be clicked?
+    //     if (this.gameOver) {
+    //         if (e.keyCode === 13 && !this.gameRunning) {
+    //             // this.gameOver = true;
+    //             // this.gameRunning = false;
+    //             // let newGame = new Maze(this.ctx);  // is there a better way?
+    //             this.player = new Player(this.ctx);
+    //             this.maze = new Maze(this.ctx);
+    //             this.gameStart();
+    //             this.animate();
+    //         }
+    //     }
+    // }
 
     
     gameStart() {
