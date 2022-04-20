@@ -13,10 +13,10 @@ In this game, users will be able to:
 * Mute/unmute game music
 
 ## Features
-
 <img src="https://media.giphy.com/media/OjUL12SKvOmXePjQAL/giphy.gif">
-<img src="./src/images/featured.png">
+* The user can guide the character to pick up different items. Each item will affect the player's circle radius - it can either enlarge or shrink depends on the item!
 
+<img src="https://media.giphy.com/media/4KP4R8azEP0JjbOxfy/giphy.gif">
 * The following code block detects collision and stops the character from walking through walls. Stored in the maze are all the wall objects - both vertical and horizonatal. I used a function checkCollision and also tracked which direction the character was coming from by reading an instance variable from the last key that was pressed from the player. Depending on which key was pressed, the logic will decide where the player's x or y position will end up and to also stop their animation frame from switching.
 ```js
 this.maze.horiObjects.forEach(wall => {
