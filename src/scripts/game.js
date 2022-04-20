@@ -1,11 +1,9 @@
 const Player = require("./player");
 const Maze = require("./maze");
 const HealthBar = require("./healthbar");
-// const Menu = require("./menu");
 
 // const muteButton = document.getElementById('mutebtn');   ----- not working
-// const githubIcon = document.getElementById('github');
-// githubIcon.addEventListener('click')
+
 
 class Game {
     constructor(ctx, fogctx) {
@@ -17,9 +15,8 @@ class Game {
         this.player = new Player(this.ctx);
         this.maze = new Maze(this.ctx);
 
-        //2250
         // constructor(ctx, x, y, width, height, health, maxHealth, color) {
-        this.healthBar = new HealthBar(this.ctx, 1220, 100, 130, 30, 100, 2250, "green");
+        this.healthBar = new HealthBar(this.ctx, 1220, 100, 130, 30, 2250, 2250, "green");
         this.healthBar.color = "green";
         
         this.music = new Audio();
@@ -29,7 +26,7 @@ class Game {
 
         this.burp = new Audio();
         this.burp.src = "src/images/burp.mp3";
-        this.burp.volume = 0.4;
+        this.burp.volume = 0.3;
 
         this.victory = new Image();
         this.victory.src = "src/images/youwin.png";
@@ -44,8 +41,6 @@ class Game {
         window.addEventListener("keydown", this.keyDown.bind(this));
         window.addEventListener("keyup", this.keyUp.bind(this));
 
-        // const github = document.getElementById('github');
-        // window.addEventListener('click')
         // window.addEventListener("keydown", this.playAgainScreen.bind(this));
         // window.addEventListener("click", this.muteVolume.bind(this));   ---- not working
     }
@@ -87,19 +82,6 @@ class Game {
             this.player.velocity.y = 1.4;
             this.player.velocity.x = 0;
             this.player.lastKey = "up";
-        // } else if (kc === 13) {
-        //     if (this.gameOver) {
-        //         if (!this.gameRunning) {
-        //             console.log(kc, "yo")
-        //             // this.gameOver = true;
-        //             // this.gameRunning = false;
-        //             // let newGame = new Maze(this.ctx);  // is there a better way?
-        //             this.player = new Player(this.ctx);
-        //             this.maze = new Maze(this.ctx);
-        //             this.gameStart();
-        //             this.animate();
-        //         }
-        //     }
         }
     }
 
@@ -182,7 +164,6 @@ class Game {
     }
 
 
-    
     drawFog() {
         this.fogctx.fillStyle = "black";
         this.fogctx.fillRect(0, 0, 1200, 700);
@@ -199,6 +180,7 @@ class Game {
         this.fogctx.globalCompositeOperation = "source-over";
     }
     
+
     draw() {
         this.player.draw();
         this.maze.draw();
@@ -206,6 +188,21 @@ class Game {
         this.healthBar.updateHealth(-0.5); // this works, but need to adjust and move somewhere else?
     }
 
+    toggleMusic() {
+        const audioButton = document.getElementById("audio-button")
+        const audio = document.getElementById("audio");
+        audioButton.onclick = () => {
+            audioButton.classList.toggle('active')
+            if (audio.paused) {
+                document.getElementById("audio-button").src = "src/images/unmuted.png"
+                audio.play()
+                audio.volume = 0.1;
+            } else {
+                document.getElementById("audio-button").src = "src/images/muted.png"
+                audio.pause()
+            }
+        }
+    }
 
     checkCollision(obj1, obj2) { // obj1 will be player
         if (
@@ -214,12 +211,14 @@ class Game {
             (obj1.y + obj1.height) >= obj2.y &&
             obj1.y <= (obj2.y + obj2.height)
         ) {
-            // console.log("colliding");
             return true;
         }
     }
 
     animate() {
+
+        this.toggleMusic();
+
         let animateId;
         animateId = requestAnimationFrame(this.animate.bind(this)) // save to var so we can cancel later
         this.ctx.clearRect(0, 0, 1400, 700);
