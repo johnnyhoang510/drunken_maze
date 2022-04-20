@@ -23,7 +23,7 @@ In this game, users will be able to:
 
 <img src="https://media.giphy.com/media/4KP4R8azEP0JjbOxfy/giphy.gif">
 
-* The following code block detects collision and stops the character from walking through walls. Stored in the maze are all the wall objects - both vertical and horizonatal. I used a function checkCollision and also tracked which direction the character was coming from by reading an instance variable from the last key that was pressed from the player. Depending on which key was pressed, the logic will decide where the player's x or y position will end up and to also stop their animation frame from switching.
+* The following code block detects collision and stops the character from walking through walls. Stored in the maze are all the wall objects - both vertical and horizonatal. To successfully implement this, I used a helper function checkCollision and also had to track which direction the character was coming from by reading an instance variable from the last key that was pressed from the player. Depending on which key was pressed, the logic will decide where the player's x or y position will end up and to also stop their animation frame from switching.
 
 ```js
 this.maze.horiObjects.forEach(wall => {
