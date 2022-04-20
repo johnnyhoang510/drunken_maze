@@ -28,6 +28,7 @@ class Menu {
                 this.createGame = new Game(this.ctx, this.fogctx)
                 this.createGame.gameStart();
                 this.createGame.animate();
+                document.getElementById("tips").style.visibility = "visible";
             }
         }
     }
@@ -35,7 +36,6 @@ class Menu {
     startGame(e) {
         // e?.preventDefault(); //this stops github link from working
         this.atMainMenu = false;
-        // this.createGame.music.play(); //------ works, but no volume slider or mute/unmute button
         if (!this.createGame.gameRunning) {
             // this flips gameRunning to true
             this.createGame.gameStart();

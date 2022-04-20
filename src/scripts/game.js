@@ -2,8 +2,6 @@ const Player = require("./player");
 const Maze = require("./maze");
 const HealthBar = require("./healthbar");
 
-// const muteButton = document.getElementById('mutebtn');   ----- not working
-
 
 class Game {
     constructor(ctx, fogctx) {
@@ -42,20 +40,7 @@ class Game {
         window.addEventListener("keyup", this.keyUp.bind(this));
 
         // window.addEventListener("keydown", this.playAgainScreen.bind(this));
-        // window.addEventListener("click", this.muteVolume.bind(this));   ---- not working
     }
-
-    // not working ----------------
-    // muteVolume(e) {
-    //     // e.preventDefault();
-    //     if (this.music.muted) {
-    //         this.music.muted = false;
-    //         muteButton.innerHTML = "Mute";
-    //     } else {
-    //         this.music.pause();
-    //         muteButton.innerHTML = "Unmute";
-    //     }
-    // }
 
 
     keyDown(e) {
@@ -134,7 +119,6 @@ class Game {
     
     gameStart() {
         this.gameRunning = true;
-        // include health drain? it is currently in game.draw
     }
 
 
@@ -185,7 +169,7 @@ class Game {
         this.player.draw();
         this.maze.draw();
         this.healthBar.draw();
-        this.healthBar.updateHealth(-0.5); // this works, but need to adjust and move somewhere else?
+        this.healthBar.updateHealth(-0.5);
     }
 
     toggleMusic() {
