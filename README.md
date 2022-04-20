@@ -14,17 +14,17 @@ In this game, users will be able to:
 
 ## Features
 
-* The following code block detects collision and stops the character from walking through walls. It also tracks which direction the character is coming from by reading an instance variable from the last key that was pressed from the player. Depending on which direction, the logic will decide where the player's x or y position will end up.
+* The following code block detects collision and stops the character from walking through walls. It also tracks which direction the character is coming from by reading an instance variable from the last key that was pressed from the player. Depending on which direction, the logic will decide where the player's x or y position will end up and to also stop their animation frame from switching.
 ```js
 this.maze.horiObjects.forEach(wall => {
             if (this.checkCollision(this.player, wall)) {
                 if (this.player.lastKey === "down") {
                     this.player.y = wall.y + wall.height;
                     this.player.keys.down.pressed = false; 
-                    this.player.animationCount = 0; // stops frame from switching
+                    this.player.animationCount = 0; //
                     this.player.velocity.x = 0;
                 } else if (this.player.lastKey === "up") {
-                    this.player.y = wall.y - wall.height; // if char is coming from top, this will keep them above the obj
+                    this.player.y = wall.y - wall.height;
                     this.player.keys.up.pressed = false;
                     this.player.animationCount = 0;
                     this.player.velocity.x = 0;
@@ -41,7 +41,7 @@ this.maze.horiObjects.forEach(wall => {
                     this.player.velocity.x = 0;
 
                 } else if (this.player.lastKey === "left") {
-                    this.player.x = wall.x - wall.width; // if coming from left, keeps them on left side
+                    this.player.x = wall.x - wall.width;
                     this.player.keys.left.pressed = false;
                     this.player.animationCount = 0;
                     this.player.velocity.x = 0;
