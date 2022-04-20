@@ -1,6 +1,7 @@
 const Player = require("./player");
 const Maze = require("./maze");
 const HealthBar = require("./healthbar");
+// const Menu = require("./menu");
 
 // const muteButton = document.getElementById('mutebtn');   ----- not working
 
@@ -14,6 +15,7 @@ class Game {
         this.player = new Player(this.ctx);
         this.maze = new Maze(this.ctx);
 
+        //2250
         // constructor(ctx, x, y, width, height, health, maxHealth, color) {
         this.healthBar = new HealthBar(this.ctx, 1220, 100, 130, 30, 2250, 2250, "green");
         this.healthBar.color = "green";
@@ -32,13 +34,14 @@ class Game {
         this.lost = new Image();
         this.lost.src = "src/images/youlose.png";
         this.playAgain = new Image();
-        this.playAgain.src = "src/images/playagain.png";
+        this.playAgain.src = "src/images/pressEnter.png";
         this.playAgainBG = new Image();
         this.playAgainBG.src = "src/images/bg.png";
 
+
         window.addEventListener("keydown", this.keyDown.bind(this));
         window.addEventListener("keyup", this.keyUp.bind(this));
-        window.addEventListener("click", this.playAgainScreen.bind(this));
+        // window.addEventListener("keydown", this.playAgainScreen.bind(this));
         // window.addEventListener("click", this.muteVolume.bind(this));   ---- not working
     }
 
@@ -79,6 +82,19 @@ class Game {
             this.player.velocity.y = 1.4;
             this.player.velocity.x = 0;
             this.player.lastKey = "up";
+        // } else if (kc === 13) {
+        //     if (this.gameOver) {
+        //         if (!this.gameRunning) {
+        //             console.log(kc, "yo")
+        //             // this.gameOver = true;
+        //             // this.gameRunning = false;
+        //             // let newGame = new Maze(this.ctx);  // is there a better way?
+        //             this.player = new Player(this.ctx);
+        //             this.maze = new Maze(this.ctx);
+        //             this.gameStart();
+        //             this.animate();
+        //         }
+        //     }
         }
     }
 
@@ -111,76 +127,27 @@ class Game {
     }
 
 
-    // keyDown(e){
-    //     e.preventDefault();
-    //     switch (e.keyCode) {
-    //         case 37:
-    //             this.player.keys.left.pressed = true;
-    //             this.player.velocity.x = 1.4;
-    //             this.player.lastKey = "left";
-    //             break;
-    
-    //         case 40:
-    //             this.player.keys.down.pressed = true;
-    //             this.player.velocity.y = -1.4;
-    //             this.player.lastKey = "down";
-    //             break;
-    
-    //         case 39:
-    //             this.player.keys.right.pressed = true;
-    //             this.player.velocity.x = -1.4;
-    //             this.player.lastKey = "right";
-    //             break;
-    
-    //         case 38:
-    //             this.player.keys.up.pressed = true;
-    //             this.player.velocity.y = 1.4;
-    //             this.player.lastKey = "up";
-    //             break;
-    //     }
-    // }
-    
-    
-    
-    // keyUp(e) {
-    //     e.preventDefault();
-    //     switch (e.keyCode) {
-    //         case 37:
-    //             this.player.keys.left.pressed = false;
-    //             this.player.velocity.x = 0;
-    //             break;
-
-    //         case 40:
-    //             this.player.keys.down.pressed = false;
-    //             this.player.velocity.y = 0;
-    //             break;
-
-    //         case 39:
-    //             this.player.keys.right.pressed = false
-    //             this.player.velocity.x = 0
-    //             break;
-
-    //         case 38:
-    //             this.player.keys.up.pressed = false;
-    //             this.player.velocity.y = 0;
-    //             break;
-    //     }
-    // }
-
-    playAgainScreen(e){  
-        // e.preventDefault();  // this doesnt allow github link to be clicked
+    playAgainScreen(e){
+        // if (!this.gameRunning) return null;
+        // console.log(this, "why am i hitting this")
+        e?.preventDefault();  // this doesnt allow github link to be clicked?
         if (this.gameOver) {
-            this.gameOver = true;
-            this.gameRunning = false;
-            let newGame = new Game(this.ctx, this.fogctx);  // is there a better way?
-            newGame.animate();
+            if (e.keyCode === 13 && !this.gameRunning) {
+                // this.gameOver = true;
+                // this.gameRunning = false;
+                // let newGame = new Maze(this.ctx);  // is there a better way?
+                this.player = new Player(this.ctx);
+                this.maze = new Maze(this.ctx);
+                this.gameStart();
+                this.animate();
+            }
         }
     }
 
     
     gameStart() {
         this.gameRunning = true;
-        //this should include health drain. it is currently in game.draw
+        // include health drain? it is currently in game.draw
     }
 
 
@@ -277,6 +244,7 @@ class Game {
         //checking for collision with car. game should end if this is true, render win screen
         if (this.checkCollision(this.player, this.maze.car)) {
             this.gameOver = true;
+            this.gameRunning = false;
             cancelAnimationFrame(animateId);
             this.showWin();
         }
@@ -284,6 +252,7 @@ class Game {
         //game is lost. render lost screen
         if (this.healthBar.health === 0) {
             this.gameOver = true;
+            this.gameRunning = false;
             cancelAnimationFrame(animateId);
             this.showLost();
         }
@@ -350,7 +319,7 @@ class Game {
     }
 
     drawPlayAgain() {
-        this.ctx.drawImage(this.playAgain, 480, 250, 400, 100);
+        this.ctx.drawImage(this.playAgain, 420, 250, 520, 100);
     }
 
     drawLost() {
