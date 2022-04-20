@@ -33,7 +33,7 @@ class Menu {
     }
 
     startGame(e) {
-        e?.preventDefault();
+        // e?.preventDefault(); //this stops github link from working
         this.atMainMenu = false;
         // this.createGame.music.play(); //------ works, but no volume slider or mute/unmute button
         if (!this.createGame.gameRunning) {
