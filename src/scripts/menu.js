@@ -15,15 +15,32 @@ class Menu {
         this.atMainMenu = true;
         
         this.createGame = new Game(this.ctx, this.fogctx);
-
         window.addEventListener("click", this.startGame.bind(this));
+        window.addEventListener("keydown", this.restartGame.bind(this));
+    }
+
+    restartGame(e) {
+        e.preventDefault();
+        if (this.createGame.gameOver) {
+            if (e.keyCode === 13 && !this.createGame.gameRunning) {
+                this.createGame.gameOver = true;
+                this.createGame.gameRunning = false;
+                this.createGame = new Game(this.ctx, this.fogctx)
+                this.createGame.gameStart();
+                this.createGame.animate();
+            }
+        }
     }
 
     startGame(e) {
-        e.preventDefault();
+        e?.preventDefault();
         this.atMainMenu = false;
         // this.createGame.music.play(); //------ works, but no volume slider or mute/unmute button
-        this.createGame.animate();
+        if (!this.createGame.gameRunning) {
+            // this flips gameRunning to true
+            this.createGame.gameStart();
+            this.createGame.animate();
+        }
         document.getElementById("tips").style.visibility = "visible";
     }
 
