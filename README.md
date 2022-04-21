@@ -16,7 +16,7 @@ In this game, users will be able to:
 
 <img src="https://media.giphy.com/media/OjUL12SKvOmXePjQAL/giphy.gif">
 
-* The user can guide the character to pick up different items. Each item will affect the player's circle radius - it can either enlarge or shrink depends on the item!
+* The user can guide the character to pick up different items. Each item will affect the player's circle radius - it can either enlarge or shrink depending on the item!
 
 <br>
 <br>
