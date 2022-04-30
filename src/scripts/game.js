@@ -169,7 +169,9 @@ class Game {
         this.player.draw();
         this.maze.draw();
         this.healthBar.draw();
-        this.healthBar.updateHealth(-0.5);
+        if (!this.gameOver) {
+            this.healthBar.updateHealth(-0.5);
+        }
     }
 
     toggleMusic() {

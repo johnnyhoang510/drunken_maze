@@ -34,7 +34,6 @@ class Menu {
     }
 
     startGame(e) {
-        // e?.preventDefault(); //this stops github link from working
         this.atMainMenu = false;
         if (!this.createGame.gameRunning) {
             // this flips gameRunning to true
